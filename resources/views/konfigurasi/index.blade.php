@@ -79,7 +79,7 @@
                                     <div class="form-group">
                                         <label for="desc">Deskripsi Website</label>
                                         <textarea name="desc" id="desc" class="form-control textarea-tinymce" cols="30"
-                                            rows="10"></textarea>
+                                            rows="10">{{ $konfig->desc }}</textarea>
                                     </div>
                                 </div>
                             </div>
