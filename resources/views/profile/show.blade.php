@@ -58,7 +58,7 @@
                                         </tr>
                                         <tr>
                                             <td>Jabatan</td>
-                                            <td><b>Developer</b></td>
+                                            <td><b>{{ $user->jabatan }}</b></td>
                                         </tr>
                                     </tbody>
                                 </table>
