@@ -6,9 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta name="description" content="{{ $konfigurasi->desc }}">
+    <meta name="author" content="{{ $konfigurasi->author }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>CREATIVE</title>
+    <title>{{ $konfigurasi->namaweb }}</title>
 
     <!-- Custom fonts for this template -->
     <link href="{{ asset('assets/admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -43,7 +44,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-2">CREATIVE</div>
+                <div class="sidebar-brand-text mx-2">{{ $konfigurasi->namaweb }}</div>
             </a>
 
             <!-- Divider -->
@@ -65,13 +66,13 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('profile.show', Crypt::encrypt(Auth::user()->id))}}">
+                <a class="nav-link" href="{{ route('profile.show', Crypt::encrypt(Auth::user()->id)) }}">
                     <i class="fa fa-user"></i>
                     <span>Profile</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('user.index')}}">
+                <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="fa fa-users"></i>
                     <span>User</span></a>
             </li>
@@ -104,7 +105,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('konfigurasi.index') }}">
                     <i class="fa fa-wrench"></i>
                     <span>Konfigurasi</span></a>
             </li>
@@ -151,9 +152,8 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link" href="{{route('profile.show', Crypt::encrypt(Auth::user()->id))}}">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}
+                            <a class="nav-link" href="{{ route('profile.show', Crypt::encrypt(Auth::user()->id)) }}">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}
                                 </span>
                             </a>
                         </li>
@@ -169,7 +169,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; BNF</span>
+                            <span>Copyright &copy; {{ $konfigurasi->author }}</span>
                         </div>
                     </div>
                 </footer>
@@ -204,13 +204,36 @@
 
             <script src="{{ asset('assets/jqueryui/jquery-ui.min.js') }}" type="text/javascript"></script>
 
+            <script src="{{ asset('assets/tinymce/js/tinymce/tinymce.min.js') }}" type="text/javascript"></script>
+
             <script>
                 $(document).ready(function() {
                     $('.tags-selector').select2();
                 });
 
-            </script>
+                tinymce.init({
+                    selector: '.textarea-tinymce',
+                    height: 100,
+                    theme: 'modern',
+                    plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
+                    toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+                    image_advtab: true,
+                    templates: [{
+                            title: 'Test template 1',
+                            content: 'Test 1'
+                        },
+                        {
+                            title: 'Test template 2',
+                            content: 'Test 2'
+                        }
+                    ],
+                    content_css: [
+                        '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                        '//www.tinymce.com/css/codepen.min.css'
+                    ]
+                });
 
+            </script>
 </body>
 
 </html>
