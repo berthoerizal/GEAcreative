@@ -24,3 +24,4 @@ route::resource('user', 'UserController');
 Route::get('/reset_password/{id}', ['as' => 'reset_password', 'uses' => 'UserController@reset_password']);
 Route::resource('konfigurasi', 'KonfigurasiController');
 Route::resource('layanan', 'LayananController');
+Route::resource('detail', 'DetailController');

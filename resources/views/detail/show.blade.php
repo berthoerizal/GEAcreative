@@ -13,9 +13,12 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
+                <div class="float-left">
+                    <a href="{{ route('layanan.index') }}" class="btn btn-primary btn-sm"> <i
+                            class="fa fa-arrow-alt-circle-left"></i> Kembali</a>
+                </div>
                 <div class="float-right">
-                    <a href="{{ route('layanan.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>
-                        Tambah</a>
+                    @include('detail.create')
                 </div>
             </div>
             <div class="card-body">
@@ -24,34 +27,26 @@
                         <thead>
                             <tr>
                                 <th width="10%">Gambar</th>
-                                <th>Layanan</th>
-                                <th width="10%">Status</th>
+                                <th>Keterangan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($layanan as $layanan)
+                            @foreach ($detail as $detail)
                                 <tr>
                                     <td>
-                                        @if (!$layanan->gambar)
+                                        @if (!$detail->gambar)
                                             <img src="{{ asset('assets/images/imagedefault.png') }}"
                                                 class="img img-responsive img-thumbnail" width="100px">
                                         @else
-                                            <img src="{{ asset('assets/images/' . $layanan->gambar) }}"
+                                            <img src="{{ asset('assets/images/' . $detail->gambar) }}"
                                                 class="img img-responsive img-thumbnail" width="100px">
                                         @endif
                                     </td>
-                                    <td><b>{{ $layanan->nama_layanan }}</b><br><i><?php echo
-                                            html_entity_decode($layanan->keterangan); ?></i></td>
-                                    <td>{{ $layanan->status_layanan }}</td>
+                                    <td><i><?php echo html_entity_decode($detail->keterangan); ?></i></td>
                                     <td>
-                                        <a class="btn btn-success btn-sm"
-                                            href="{{ route('layanan.edit', $layanan->slug) }}"><i
-                                                class="fa fa-pencil-alt"></i> Edit</a>
-                                        <a class="btn btn-info btn-sm" href="{{ route('detail.show', $layanan->slug) }}"><i
-                                                class="fa fa-plus"></i>
-                                            Detail</a>
-                                        @include('layanan.delete')
+                                        @include('detail.edit')
+                                        @include('detail.delete')
                                     </td>
                                 </tr>
                             @endforeach

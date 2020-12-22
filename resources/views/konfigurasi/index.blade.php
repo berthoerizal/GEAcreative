@@ -14,7 +14,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <div class="float-left">
-                    <a href="{{ route('dashboard') }}" class="btn btn-primary btn"> <i
+                    <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm"> <i
                             class="fas fa-fw fa-tachometer-alt"></i> Dashboard</a>
                 </div>
             </div>
