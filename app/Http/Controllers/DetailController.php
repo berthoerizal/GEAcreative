@@ -94,7 +94,7 @@ class DetailController extends Controller
     public function show($slug)
     {
         $layanan = Layanan::where('slug', $slug)->first();
-        $title = $layanan->nama_layanan;
+        $title = "Detail: $layanan->nama_layanan";
         $detail = DB::table('details')
             ->join('layanans', 'details.id_layanan', '=', 'layanans.id')
             ->select('details.*', 'layanans.nama_layanan', 'layanans.slug')

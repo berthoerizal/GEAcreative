@@ -26,7 +26,7 @@
                                 <th width="10%">Gambar</th>
                                 <th>Layanan</th>
                                 <th width="10%">Status</th>
-                                <th>Aksi</th>
+                                <th width="35%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,6 +51,10 @@
                                         <a class="btn btn-info btn-sm" href="{{ route('detail.show', $layanan->slug) }}"><i
                                                 class="fa fa-plus"></i>
                                             Detail</a>
+                                        <a class="btn btn-warning btn-sm"
+                                            href="{{ route('harga.show', $layanan->slug) }}"><i
+                                                class="fa fa-money-bill"></i>
+                                            Harga</a>
                                         @include('layanan.delete')
                                     </td>
                                 </tr>

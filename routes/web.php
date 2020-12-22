@@ -25,3 +25,4 @@ Route::get('/reset_password/{id}', ['as' => 'reset_password', 'uses' => 'UserCon
 Route::resource('konfigurasi', 'KonfigurasiController');
 Route::resource('layanan', 'LayananController');
 Route::resource('detail', 'DetailController');
+Route::resource('harga', 'PaketController');

@@ -19,7 +19,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="kata">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" class="form-control"
+                        <textarea name="keterangan" id="keterangan" class="form-control textarea-tinymce"
                             rows="5">{{ old('keterangan') }}</textarea>
                     </div>
                     <div class="form-group">

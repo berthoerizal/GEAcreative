@@ -28,7 +28,7 @@
                             <tr>
                                 <th width="10%">Gambar</th>
                                 <th>Keterangan</th>
-                                <th>Aksi</th>
+                                <th width="20%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
