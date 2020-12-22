@@ -84,7 +84,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('galeri.index') }}">
                     <i class="fa fa-image"></i>
                     <span>Galeri</span></a>
             </li>

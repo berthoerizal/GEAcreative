@@ -26,3 +26,4 @@ Route::resource('konfigurasi', 'KonfigurasiController');
 Route::resource('layanan', 'LayananController');
 Route::resource('detail', 'DetailController');
 Route::resource('harga', 'PaketController');
+Route::resource('galeri', 'GaleriController');
