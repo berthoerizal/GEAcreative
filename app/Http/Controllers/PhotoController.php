@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Detail;
-use App\Layanan;
 use Illuminate\Support\Facades\Auth;
+use App\Photo;
+use App\Pesanan;
 use Illuminate\Support\Str;
 
-class DetailController extends Controller
+class PhotoController extends Controller
 {
     public function __construct()
     {
@@ -44,43 +44,43 @@ class DetailController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'keterangan' => 'required',
-            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'judul' => 'required',
+            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
+        $data = Pesanan::find($request->id_pesanan);
         if ($request->hasFile('gambar')) {
             $resorce  = $request->file('gambar');
-            $gambar   = Str::slug($request->keterangan) . '-' . $resorce->getClientOriginalName();
+            $gambar   = time() .'-'.$data->slug . '-' . $resorce->getClientOriginalName();
             // $resorce->move(\base_path() . "/assets/images", $gambar);
             $resorce->move(public_path() . '/assets/images', $gambar);
 
-            $detail = Detail::create([
-                'id_layanan' => $request->id_layanan,
-                'keterangan' => $request->keterangan,
+            $photo = Photo::create([
+                'id_pesanan' => $request->id_pesanan,
+                'judul' => $request->judul,
                 'gambar' => $gambar,
             ]);
 
-            $data = Layanan::find($request->id_layanan);
-            if (!$detail) {
+            
+            if (!$photo) {
                 session()->flash('error', 'Data gagal ditambah');
-                return redirect(route('detail.show', $data->slug));
+                return redirect(route('photo.show', $data->slug));
             } else {
                 session()->flash('success', 'Data berhasil ditambah');
-                return redirect(route('detail.show', $data->slug));
+                return redirect(route('photo.show', $data->slug));
             }
         } else {
-            $detail = Detail::create([
-                'id_layanan' => $request->id_layanan,
-                'keterangan' => $request->keterangan,
+            $photo = Photo::create([
+                'id_pesanan' => $request->id_pesanan,
+                'judul' => $request->judul
             ]);
 
-            $data = Layanan::find($request->id_layanan);
-            if (!$detail) {
+            if (!$photo) {
                 session()->flash('error', 'Data gagal ditambah');
-                return redirect(route('detail.show', $data->slug));
+                return redirect(route('photo.show', $data->slug));
             } else {
                 session()->flash('success', 'Data berhasil ditambah');
-                return redirect(route('detail.show', $data->slug));
+                return redirect(route('photo.show', $data->slug));
             }
         }
     }
@@ -93,14 +93,10 @@ class DetailController extends Controller
      */
     public function show($slug)
     {
-        $layanan = Layanan::where('slug', $slug)->first();
-        $title = "Detail: $layanan->nama_layanan";
-        $detail = DB::table('details')
-            ->join('layanans', 'details.id_layanan', '=', 'layanans.id')
-            ->select('details.*', 'layanans.nama_layanan', 'layanans.slug')
-            ->where('id_layanan', $layanan->id)
-            ->get();
-        return view('detail.show', ['title' => $title, 'detail' => $detail, 'layanan' => $layanan]);
+        $pesanan = Pesanan::where('slug', $slug)->first();
+        $title = "Photo: $pesanan->nama1 dan $pesanan->nama2";
+        $photo = Photo::where('id_pesanan', $pesanan->id)->paginate(4);
+        return view('photo.show', ['title' => $title, 'photo' => $photo, 'pesanan' => $pesanan]);
     }
 
     /**
@@ -124,53 +120,52 @@ class DetailController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'keterangan' => 'required',
-            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'judul' => 'required',
+            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
+        $data = Pesanan::find($request->id_pesanan);
         if ($request->hasFile('gambar')) {
             $resorce  = $request->file('gambar');
-            $gambar   = Str::slug($request->keterangan) . '-' . $resorce->getClientOriginalName();
+            $gambar   = time() .'-'.$data->slug . '-' . $resorce->getClientOriginalName();
             // $resorce->move(\base_path() . "/assets/images", $gambar);
             $resorce->move(public_path() . '/assets/images', $gambar);
 
-            $detail = Detail::find($id);
-            if ($detail->gambar != 'imagedefault.png') {
-                $old_image = public_path() . "/assets/images/" . $detail->gambar;
+            $photo = Photo::find($id);
+            if ($photo->gambar != 'imagedefault.png') {
+                $old_image = public_path() . "/assets/images/" . $photo->gambar;
                 @unlink($old_image);
             }
-            $detail->update([
-                'id_layanan' => $request->id_layanan,
-                'keterangan' => $request->keterangan,
+            $photo->update([
+                'id_pesanan' => $request->id_pesanan,
+                'judul' => $request->judul,
                 'gambar' => $gambar,
             ]);
 
-            $data = Layanan::find($request->id_layanan);
-            if (!$detail) {
+            if (!$photo) {
                 session()->flash('error', 'Data gagal diubah');
-                return redirect(route('detail.show', $data->slug));
+                return redirect(route('photo.show', $data->slug));
             } else {
                 session()->flash('success', 'Data berhasil diubah');
-                return redirect(route('detail.show', $data->slug));
+                return redirect(route('photo.show', $data->slug));
             }
         } else {
-            $detail = Detail::find($id);
-            $detail->update([
-                'id_layanan' => $request->id_layanan,
-                'keterangan' => $request->keterangan
+            $photo = Photo::find($id);
+            $photo->update([
+                'id_pesanan' => $request->id_pesanan,
+                'judul' => $request->judul
             ]);
 
-
-            $data = Layanan::find($request->id_layanan);
-            if (!$detail) {
+            if (!$photo) {
                 session()->flash('error', 'Data gagal diubah');
-                return redirect(route('detail.show', $data->slug));
+                return redirect(route('photo.show', $data->slug));
             } else {
                 session()->flash('success', 'Data berhasil diubah');
-                return redirect(route('detail.show', $data->slug));
+                return redirect(route('photo.show', $data->slug));
             }
         }
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -180,20 +175,20 @@ class DetailController extends Controller
      */
     public function destroy($id)
     {
-        $detail = Detail::find($id);
-        $data = Layanan::find($detail->id_layanan);
-        if ($detail->gambar != 'imagedefault.png') {
-            $old_image = public_path() . "/assets/images/" . $detail->gambar;
+        $photo = Photo::find($id);
+        $data = Pesanan::find($photo->id_pesanan);
+        if ($photo->gambar != 'imagedefault.png') {
+            $old_image = public_path() . "/assets/images/" . $photo->gambar;
             @unlink($old_image);
         }
 
-        $detail->delete();
-        if (!$detail) {
+        $photo->delete();
+        if (!$photo) {
             session()->flash('error', 'Data gagal dihapus');
-            return redirect(route('detail.show', $data->slug));
+            return redirect(route('photo.show', $data->slug));
         } else {
             session()->flash('success', 'Data berhasil dihapus');
-            return redirect(route('detail.show', $data->slug));
+            return redirect(route('photo.show', $data->slug));
         }
     }
 }

@@ -20,8 +20,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Administrator</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Users</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$user_count}}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fa fa-users fa-2x text-gray-300"></i>
@@ -38,7 +38,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Layanan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$layanan_count}}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fa fa-book fa-2x text-gray-300"></i>
@@ -55,7 +55,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pesanan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$pesanan_count}}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fa fa-address-card fa-2x text-gray-300"></i>
@@ -72,7 +72,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Galeri</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$galeri_count}}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fa fa-image fa-2x text-gray-300"></i>

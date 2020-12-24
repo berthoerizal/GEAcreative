@@ -84,7 +84,7 @@ class PaketController extends Controller
         $paket = DB::table('pakets')
             ->join('layanans', 'pakets.id_layanan', '=', 'layanans.id')
             ->select('pakets.*', 'layanans.nama_layanan', 'layanans.slug')
-            ->where('slug', $slug)
+            ->where('id_layanan', $layanan->id)
             ->get();
         return view('paket.show', ['title' => $title, 'paket' => $paket, 'layanan' => $layanan]);
     }

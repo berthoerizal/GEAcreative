@@ -13,14 +13,13 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form action="{{ route('detail.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('photo.store') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <input type="hidden" name="id_layanan" value="{{ $layanan->id }}" />
+                <input type="hidden" name="id_pesanan" value="{{ $pesanan->id }}" />
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="keterangan">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" class="form-control textarea-tinymce"
-                            rows="5">{{ old('keterangan') }}</textarea>
+                        <label for="judul">Judul Photo</label>
+                        <input type="text" class="form-control" id="judul" name="judul" value="{{old('judul')}}" required>
                     </div>
                     <div class="form-group">
                         <label for="gambar">Gambar</label><br>

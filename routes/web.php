@@ -28,3 +28,4 @@ Route::resource('detail', 'DetailController');
 Route::resource('harga', 'PaketController');
 Route::resource('galeri', 'GaleriController');
 Route::resource('pesanan', 'PesananController');
+Route::resource('photo', 'PhotoController');

@@ -30,6 +30,7 @@ class PesananController extends Controller
             ->join('layanans', 'pesanans.id_layanan', '=', 'layanans.id')
             ->join('pakets', 'pesanans.id_paket', '=', 'pakets.id')
             ->select('pesanans.*', 'layanans.nama_layanan', 'pakets.nama_paket')
+            ->orderBy('created_at', 'asc')
             ->get();
         return view('pesanan.index', ['title' => $title, 'pesanan' => $pesanan]);
     }

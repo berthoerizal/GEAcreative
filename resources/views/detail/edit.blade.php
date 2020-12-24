@@ -19,13 +19,16 @@
                 <input type="hidden" name="id_layanan" value="{{ $layanan->id }}" />
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="kata">Keterangan</label>
+                        <label for="keterangan">Keterangan</label>
                         <textarea name="keterangan" id="keterangan" class="form-control textarea-tinymce"
                             rows="5">{{ $detail->keterangan }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="gambar">Gambar</label><br>
-                        <input type="file" id="gambar" name="gambar">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                            <label class="custom-file-label" for="gambar">Pilih Gambar</label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -49,6 +49,9 @@
                                         <a class="btn btn-success btn-sm"
                                             href="{{ route('pesanan.edit', $pesanan->slug) }}"><i
                                                 class="fa fa-pencil-alt"></i> Edit</a>
+                                        <a class="btn btn-info btn-sm" href="{{ route('photo.show', $pesanan->slug) }}"><i
+                                                class="fa fa-image"></i>
+                                            Photo</a>
                                         @include('pesanan.delete')
                                     </td>
                                 </tr>
