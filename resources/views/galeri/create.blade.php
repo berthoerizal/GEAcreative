@@ -33,11 +33,9 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="id_layanan">Layanan</label>
-                                            <select class="form-control" id="id_layanan" name="id_layanan">
-                                                @foreach ($layanan as $layanan)
-                                                    <option value="{{ $layanan->id }}">{{ $layanan->nama_layanan }}</option>
-                                                @endforeach
+                                            <label for="jenis">Jenis Galeri</label>
+                                            <select class="form-control" id="jenis" name="jenis">
+                                                <option value="undangan">Undangan</option>
                                             </select>
                                         </div>
                                     </div>
@@ -49,7 +47,7 @@
                                             <div class="col-md-12">
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="gambar" name="gambar"
-                                                        onchange="previewImg()">
+                                                        onchange="previewImg()" required>
                                                     <label class="custom-file-label" for="gambar">Pilih Gambar</label>
                                                 </div>
                                             </div>

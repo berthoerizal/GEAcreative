@@ -16,7 +16,7 @@ class CreateGalerisTable extends Migration
         // protected $fillable = ['id_layanan', 'id_user', 'judul', 'slug', 'gambar'];
         Schema::create('galeris', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('id_layanan');
+            $table->string('jenis');
             $table->integer('id_user');
             $table->string('judul');
             $table->string('slug');

@@ -25,9 +25,7 @@
     <script src="{{ asset('assets/admin/js/core/jquery.3.2.1.min.js') }}"></script>
     <link href="{{ asset('assets/admin/message/toastr.min.css') }}" rel="stylesheet">
     <script src="{{ asset('assets/admin/message/toastr.min.js') }}"></script>
-
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('assets/select2/select2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/jqueryui/jquery-ui.min.css') }}">
 </head>
 
@@ -90,7 +88,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('pesanan.index') }}">
                     <i class="fa fa-address-card"></i>
                     <span>Pesanan</span></a>
             </li>
@@ -191,7 +189,8 @@
 
             <!-- Page level custom scripts -->
             <script src="{{ asset('assets/admin/js/demo/datatables-demo.js') }}"></script>
-            <script src="{{ asset('js/select2.min.js') }}"></script>
+
+            <script src="{{ asset('assets/select2/select2.min.js') }}"></script>
 
             <script src="{{ asset('assets/jqueryui/jquery-ui.min.js') }}" type="text/javascript"></script>
 
@@ -199,9 +198,8 @@
 
             <script>
                 $(document).ready(function() {
-                    $('.tags-selector').select2();
+                    $('.select2').select2();
                 });
-
                 tinymce.init({
                     selector: '.textarea-tinymce',
                     height: 100,

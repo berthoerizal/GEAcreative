@@ -41,23 +41,13 @@
                                     <td><?php echo html_entity_decode($paket->keterangan); ?>
                                     </td>
                                     <td>Rp. {{ number_format($paket->harga, 2, ',', '.') }}</td>
-                                    <td class="text-center"><b>
-                                            @if (!$paket->diskon)
-                                                0%
-                                            @else
-                                                {{ $paket->diskon }}%
-                                            @endif
-                                        </b></td>
+                                    <td class="text-center"><b>{{ $paket->diskon }}% </b></td>
                                     <td>Rp.
-                                        @if (!$paket->diskon)
-                                            <?php echo number_format($paket->harga, 2, ',', '.'); ?>
-                                        @else
                                             <?php
                                             $hasil_diskon = ($paket->harga * $paket->diskon) / 100;
                                             $total_harga = abs($paket->harga - $hasil_diskon);
                                             echo number_format($total_harga, 2, ',', '.');
                                             ?>
-                                        @endif
                                     </td>
                                     <td>
                                         @include('paket.edit')

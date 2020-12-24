@@ -25,7 +25,7 @@
                             <tr>
                                 <th width="10%">Gambar</th>
                                 <th>Judul</th>
-                                <th>Layanan</th>
+                                <th>Jenis</th>
                                 <th>Tanggal Upload</th>
                                 <th width="20%">Aksi</th>
                             </tr>
@@ -42,7 +42,7 @@
                                         @endif
                                     </td>
                                     <td><b>{{ $galeri->judul }}</b><br><i>Oleh: {{ $galeri->name }}</i></td>
-                                    <td><b>{{ $galeri->nama_layanan }}</b></td>
+                                    <td class="text-center"><b>{{ $galeri->jenis }}</b></td>
                                     <td class="text-center"><?php echo date('d M Y',
                                         strtotime($galeri->created_at)); ?></td>
                                     <td>

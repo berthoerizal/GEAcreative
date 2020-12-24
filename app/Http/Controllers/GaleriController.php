@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Galeri;
-use App\Layanan;
 use Illuminate\Support\Str;
 
 class GaleriController extends Controller
@@ -24,9 +23,8 @@ class GaleriController extends Controller
     {
         $title = "Galeri";
         $galeri = DB::table('galeris')
-            ->join('layanans', 'galeris.id_layanan', '=', 'layanans.id')
             ->join('users', 'galeris.id_user', '=', 'users.id')
-            ->select('galeris.*', 'layanans.nama_layanan', 'users.name')
+            ->select('galeris.*', 'users.name')
             ->get();
         return view('galeri.index', ['title' => $title, 'galeri' => $galeri]);
     }
@@ -39,8 +37,7 @@ class GaleriController extends Controller
     public function create()
     {
         $title = "Tambah Galeri";
-        $layanan = DB::table('layanans')->where('status_layanan', 'publish')->get();
-        return view('galeri.create', ['title' => $title, 'layanan' => $layanan]);
+        return view('galeri.create', ['title' => $title]);
     }
 
     /**
@@ -74,7 +71,7 @@ class GaleriController extends Controller
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul),
                 'gambar' => $gambar,
-                'id_layanan' => $request->id_layanan,
+                'jenis' => $request->jenis,
                 'id_user' => Auth::user()->id
             ]);
 
@@ -89,7 +86,7 @@ class GaleriController extends Controller
             $galeri = Galeri::create([
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul),
-                'id_layanan' => $request->id_layanan,
+                'jenis' => $request->jenis,
                 'id_user' => Auth::user()->id
             ]);
 
@@ -124,8 +121,7 @@ class GaleriController extends Controller
     {
         $title = "Edit Galeri";
         $galeri = Galeri::where('slug', $slug)->first();
-        $layanan = DB::table('layanans')->where('status_layanan', 'publish')->get();
-        return view('galeri.edit', ['title' => $title, 'layanan' => $layanan, 'galeri' => $galeri]);
+        return view('galeri.edit', ['title' => $title, 'galeri' => $galeri]);
     }
 
     /**
@@ -158,7 +154,7 @@ class GaleriController extends Controller
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul),
                 'gambar' => $gambar,
-                'id_layanan' => $request->id_layanan,
+                'jenis' => $request->jenis,
                 'id_user' => Auth::user()->id
             ]);
 
@@ -175,7 +171,7 @@ class GaleriController extends Controller
             $galeri->update([
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul),
-                'id_layanan' => $request->id_layanan,
+                'jenis' => $request->jenis,
                 'id_user' => Auth::user()->id
             ]);
 

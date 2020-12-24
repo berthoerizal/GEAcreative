@@ -48,12 +48,17 @@ class PaketController extends Controller
             'keterangan' => 'required'
         ]);
 
+        if($request->diskon==NULL){
+            $diskon = 0;
+        } else {
+            $diskon = $request->diskon;
+        }
         $paket = Paket::create([
             'id_layanan' => $request->id_layanan,
             'nama_paket' => $request->nama_paket,
             'keterangan' => $request->keterangan,
             'harga' => $request->harga,
-            'diskon' => $request->diskon
+            'diskon' => $diskon
         ]);
 
         $data = Layanan::find($request->id_layanan);
@@ -104,13 +109,21 @@ class PaketController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $paket = Paket::find($id);
+
+        if($request->diskon==NULL){
+            $diskon = 0;
+        } else {
+            $diskon = $request->diskon;
+        }
+
         $paket->update([
             'id_layanan' => $request->id_layanan,
             'nama_paket' => $request->nama_paket,
             'keterangan' => $request->keterangan,
             'harga' => $request->harga,
-            'diskon' => $request->diskon
+            'diskon' => $diskon
         ]);
 
         $data = Layanan::find($request->id_layanan);

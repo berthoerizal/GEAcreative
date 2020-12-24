@@ -9,8 +9,6 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">{{ $title }}</h1>
         <hr>
-        {{-- $fillable = ['nama_layanan', 'slug', 'keterangan', 'gambar', 'status_layanan']
-        --}}
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -36,13 +34,9 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="id_layanan">Layanan</label>
-                                            <select class="form-control" id="id_layanan" name="id_layanan">
-                                                @foreach ($layanan as $layanan)
-                                                    <option value="{{ $layanan->id }}" @if ($layanan->id == $galeri->id_layanan)
-                                                        selected
-                                                @endif>{{ $layanan->nama_layanan }}</option>
-                                                @endforeach
+                                            <label for="jenis">Jenis</label>
+                                            <select class="form-control" id="jenis" name="jenis">
+                                                <option value="undangan">Undangan</option>
                                             </select>
                                         </div>
                                     </div>
