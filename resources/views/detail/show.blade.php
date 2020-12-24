@@ -26,9 +26,9 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th width="10%">Gambar</th>
-                                <th>Keterangan</th>
-                                <th width="20%">Aksi</th>
+                                <th width="10%" class="text-center">Gambar</th>
+                                <th class="text-center">Keterangan</th>
+                                <th width="20%" class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

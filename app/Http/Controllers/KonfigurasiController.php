@@ -97,10 +97,10 @@ class KonfigurasiController extends Controller
         ]);
 
         if (!$konfig) {
-            session()->flash('error', 'Data gagal diedit');
+            session()->flash('error', 'Data gagal diubah');
             return redirect(route('konfigurasi.index'));
         } else {
-            session()->flash('success', 'Data berasil diedit');
+            session()->flash('success', 'Data berasil diubah');
             return redirect(route('konfigurasi.index'));
         }
     }

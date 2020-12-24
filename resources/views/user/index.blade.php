@@ -31,10 +31,10 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Jabatan</th>
-                                <th>Aksi</th>
+                                <th class="text-center">Nama</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Jabatan</th>
+                                <th class="text-center" width="30%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

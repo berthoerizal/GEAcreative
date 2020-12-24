@@ -23,10 +23,10 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th width="10%">Gambar</th>
-                                <th>Layanan</th>
-                                <th width="10%">Status</th>
-                                <th width="35%">Aksi</th>
+                                <th width="10%" class="text-center">Gambar</th>
+                                <th class="text-center">Layanan</th>
+                                <th width="10%" class="text-center">Status</th>
+                                <th width="35%" class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,7 +43,11 @@
                                     </td>
                                     <td><b>{{ $layanan->nama_layanan }}</b><br><i><?php echo
                                             html_entity_decode($layanan->keterangan); ?></i></td>
-                                    <td>{{ $layanan->status_layanan }}</td>
+                                    <td class="text-center">@if ($layanan->status_layanan=="publish")
+                                        <b class="text-success">Publish</b>
+                                    @else
+                                        <b class="text-warning">Draft</b>
+                                    @endif</td>
                                     <td>
                                         <a class="btn btn-primary btn-sm"
                                             href="{{ route('layanan.edit', $layanan->slug) }}"><i
@@ -52,8 +56,7 @@
                                                 class="fa fa-plus"></i>
                                             Detail</a>
                                         <a class="btn btn-primary btn-sm"
-                                            href="{{ route('harga.show', $layanan->slug) }}"><i
-                                                class="fa fa-money-bill"></i>
+                                            href="{{ route('harga.show', $layanan->slug) }}"><i class="fas fa-dollar-sign"></i>
                                             Harga</a>
                                         @include('layanan.delete')
                                     </td>

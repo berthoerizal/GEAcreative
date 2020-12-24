@@ -29,22 +29,26 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Tanggal Pesanan</th>
-                                <th>Pemesan</th>
-                                <th>Layanan</th>
-                                <th>Bayar</th>
-                                <th>Status</th>
-                                <th width="30%">Aksi</th>
+                                <th class="text-center">Tanggal Pesanan</th>
+                                <th class="text-center">Pemesan</th>
+                                <th class="text-center">Layanan</th>
+                                <th class="text-center">Bayar</th>
+                                <th class="text-center">Status</th>
+                                <th width="30%" class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($pesanan as $pesanan)
                                 <tr>
-                                    <td>{{ date('d-M-Y', strtotime($pesanan->created_at)) }}</td>
+                                    <td>{{ date('d-F-Y', strtotime($pesanan->created_at)) }}</td>
                                     <td>{{ $pesanan->pemesan }}<br><i>Nomor Hp: +62{{ $pesanan->nomor_hp }}</i></td>
                                     <td><b>{{ $pesanan->nama_layanan }}</b><br><i>{{ $pesanan->nama_paket }}</i></td>
                                     <td>Rp. {{ number_format($pesanan->bayar, 2, ',', '.') }}</td>
-                                    <td>{{ $pesanan->status }}</td>
+                                    <td class="text-center">@if ($pesanan->status=="publish")
+                                        <b class="text-success">Publish</b>
+                                    @else
+                                        <b class="text-warning">Draft</b>
+                                    @endif</td>
                                     <td>
                                         <a class="btn btn-primary btn-sm"
                                             href="{{ route('pesanan.edit', $pesanan->slug) }}"><i

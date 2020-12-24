@@ -26,12 +26,12 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Nama Paket</th>
-                                <th>Keterangan</th>
-                                <th>Harga</th>
-                                <th>Diskon</th>
-                                <th>Total Harga</th>
-                                <th width="20%">Aksi</th>
+                                <th class="text-center">Nama Paket</th>
+                                <th class="text-center">Keterangan</th>
+                                <th class="text-center">Harga</th>
+                                <th class="text-center">Diskon</th>
+                                <th class="text-center">Total Harga</th>
+                                <th width="20%" class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
