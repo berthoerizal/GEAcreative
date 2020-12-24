@@ -45,13 +45,13 @@
                                             html_entity_decode($layanan->keterangan); ?></i></td>
                                     <td>{{ $layanan->status_layanan }}</td>
                                     <td>
-                                        <a class="btn btn-success btn-sm"
+                                        <a class="btn btn-primary btn-sm"
                                             href="{{ route('layanan.edit', $layanan->slug) }}"><i
                                                 class="fa fa-pencil-alt"></i> Edit</a>
-                                        <a class="btn btn-info btn-sm" href="{{ route('detail.show', $layanan->slug) }}"><i
+                                        <a class="btn btn-primary btn-sm" href="{{ route('detail.show', $layanan->slug) }}"><i
                                                 class="fa fa-plus"></i>
                                             Detail</a>
-                                        <a class="btn btn-warning btn-sm"
+                                        <a class="btn btn-primary btn-sm"
                                             href="{{ route('harga.show', $layanan->slug) }}"><i
                                                 class="fa fa-money-bill"></i>
                                             Harga</a>

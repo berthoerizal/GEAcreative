@@ -53,7 +53,7 @@
                                     <td class="text-center"><?php echo date('d M Y',
                                         strtotime($galeri->created_at)); ?></td>
                                     <td>
-                                        <a class="btn btn-success btn-sm"
+                                        <a class="btn btn-primary btn-sm"
                                             href="{{ route('galeri.edit', $galeri->slug) }}"><i
                                                 class="fa fa-pencil-alt"></i> Edit</a>
                                         @include('galeri.delete')

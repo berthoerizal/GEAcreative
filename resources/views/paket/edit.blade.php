@@ -1,4 +1,4 @@
-<a class="btn btn-success btn-sm" href="#" data-toggle="modal" data-target="#editModal{{ $paket->id }}">
+<a class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#editModal{{ $paket->id }}">
     <i class="fa fa-pencil-alt"></i>
     Edit
 </a>

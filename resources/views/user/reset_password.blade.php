@@ -1,4 +1,4 @@
-<a class="btn btn-warning btn-sm" href="#" data-toggle="modal" data-target="#resetModal{{$user->id}}">
+<a class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#resetModal{{$user->id}}">
     <i class="fa fa-key"></i>
     Password
 </a>
@@ -17,7 +17,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-            <a href="{{route('reset_password', $user->id)}}" class="btn btn-warning btn-sm">Reset</a>
+            <a href="{{route('reset_password', $user->id)}}" class="btn btn-primary btn-sm">Reset</a>
         </div>
     </div>
     </div>

@@ -46,10 +46,10 @@
                                     <td>Rp. {{ number_format($pesanan->bayar, 2, ',', '.') }}</td>
                                     <td>{{ $pesanan->status }}</td>
                                     <td>
-                                        <a class="btn btn-success btn-sm"
+                                        <a class="btn btn-primary btn-sm"
                                             href="{{ route('pesanan.edit', $pesanan->slug) }}"><i
                                                 class="fa fa-pencil-alt"></i> Edit</a>
-                                        <a class="btn btn-info btn-sm" href="{{ route('photo.show', $pesanan->slug) }}"><i
+                                        <a class="btn btn-primary btn-sm" href="{{ route('photo.show', $pesanan->slug) }}"><i
                                                 class="fa fa-image"></i>
                                             Photo</a>
                                         @include('pesanan.delete')
