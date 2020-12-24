@@ -23,16 +23,20 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th width="10%">Gambar</th>
-                                <th>Judul</th>
-                                <th>Jenis</th>
-                                <th>Tanggal Upload</th>
-                                <th width="20%">Aksi</th>
+                                <th>#</th>
+                                <th width="10%" class="text-center">Gambar</th>
+                                <th class="text-center">Judul</th>
+                                <th class="text-center">Jenis</th>
+                                <th class="text-center">Tanggal Upload</th>
+                                <th width="20%" class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($galeri as $galeri)
                                 <tr>
+                                    <td class="text-center">
+                                        {{$galeri->kode}}
+                                    </td>
                                     <td>
                                         @if (!$galeri->gambar)
                                             <img src="{{ asset('assets/images/imagedefault.png') }}"
@@ -42,7 +46,10 @@
                                         @endif
                                     </td>
                                     <td><b>{{ $galeri->judul }}</b><br><i>Oleh: {{ $galeri->name }}</i></td>
-                                    <td class="text-center"><b>{{ $galeri->jenis }}</b></td>
+                                    <td class="text-center"><b>
+                                        @if ($galeri->jenis=="undangan")
+                                            Undangan
+                                        @endif</b></td>
                                     <td class="text-center"><?php echo date('d M Y',
                                         strtotime($galeri->created_at)); ?></td>
                                     <td>

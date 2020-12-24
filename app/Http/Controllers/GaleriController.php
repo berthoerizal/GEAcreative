@@ -25,6 +25,7 @@ class GaleriController extends Controller
         $galeri = DB::table('galeris')
             ->join('users', 'galeris.id_user', '=', 'users.id')
             ->select('galeris.*', 'users.name')
+            ->orderBy('kode', 'asc')
             ->get();
         return view('galeri.index', ['title' => $title, 'galeri' => $galeri]);
     }
@@ -37,7 +38,16 @@ class GaleriController extends Controller
     public function create()
     {
         $title = "Tambah Galeri";
-        return view('galeri.create', ['title' => $title]);
+        $galeri_count = Galeri::all()->count();
+        $galeri = Galeri::all();
+        $kode_item = 0;
+        if($galeri_count>0) {
+            foreach($galeri as $galeri){
+                $kode_item = $galeri->kode;
+            }
+        } 
+        $kode_item = $kode_item + 1;
+        return view('galeri.create', ['title' => $title, 'kode_item' => $kode_item]);
     }
 
     /**
@@ -50,7 +60,7 @@ class GaleriController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $galeri = Galeri::all();
@@ -72,7 +82,8 @@ class GaleriController extends Controller
                 'slug' => Str::slug($request->judul),
                 'gambar' => $gambar,
                 'jenis' => $request->jenis,
-                'id_user' => Auth::user()->id
+                'id_user' => Auth::user()->id,
+                'kode' => $request->kode_item
             ]);
 
             if (!$galeri) {
@@ -87,7 +98,8 @@ class GaleriController extends Controller
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul),
                 'jenis' => $request->jenis,
-                'id_user' => Auth::user()->id
+                'id_user' => Auth::user()->id,
+                'kode' => $request->kode_item
             ]);
 
             if (!$galeri) {
@@ -155,7 +167,8 @@ class GaleriController extends Controller
                 'slug' => Str::slug($request->judul),
                 'gambar' => $gambar,
                 'jenis' => $request->jenis,
-                'id_user' => Auth::user()->id
+                'id_user' => Auth::user()->id,
+                'kode' => $request->kode
             ]);
 
             if (!$galeri) {
@@ -172,7 +185,8 @@ class GaleriController extends Controller
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul),
                 'jenis' => $request->jenis,
-                'id_user' => Auth::user()->id
+                'id_user' => Auth::user()->id,
+                'kode' => $request->kode
             ]);
 
             if (!$galeri) {
@@ -199,8 +213,18 @@ class GaleriController extends Controller
             $old_image = public_path() . "/assets/images/" . $galeri->gambar;
             @unlink($old_image);
         }
-
         $galeri->delete();
+
+        $galeri_all = Galeri::all();
+        $galeri_count = Galeri::all()->count();
+        $x=1;
+        if($galeri_count>0){
+            foreach($galeri_all as $galeri_all){
+                Galeri::where('id', $galeri_all->id)->update(['kode'=>$x]);
+                $x++;
+            }
+        }
+
         if (!$galeri) {
             session()->flash('error', 'Data gagal dihapus');
             return redirect(route('galeri.index'));

@@ -21,6 +21,7 @@ class CreateGalerisTable extends Migration
             $table->string('judul');
             $table->string('slug');
             $table->string('gambar');
+            $table->integer('kode')->unique();
             $table->timestamps();
         });
     }

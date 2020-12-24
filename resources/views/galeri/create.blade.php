@@ -40,6 +40,17 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
+                                        <label for="kode_item">Kode Item</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon3">Kode Item</span>
+                                            </div>
+                                            <input type="number" name="kode_item" id="kode_item" value="{{ $kode_item }}"
+                                                class="form-control" id="basic-url" aria-describedby="basic-addon3" readonly>
+                                        </div>
+                                        <p><span style="color: red;">*</span>Kode Item harus sama dengan nama template!</p>
+                                    </div>
+                                    <div class="col-md-12">
                                         <div class="form-group row">
                                             <div class="col-md-12">
                                                 <label for="gambar">Gambar</label>
