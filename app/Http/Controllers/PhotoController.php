@@ -51,7 +51,7 @@ class PhotoController extends Controller
         $data = Pesanan::find($request->id_pesanan);
         if ($request->hasFile('gambar')) {
             $resorce  = $request->file('gambar');
-            $gambar   = time() .'-'.$data->slug . '-' . $resorce->getClientOriginalName();
+            $gambar   = time() . '-' . $data->slug . '-' . $resorce->getClientOriginalName();
             // $resorce->move(\base_path() . "/assets/images", $gambar);
             $resorce->move(public_path() . '/assets/images', $gambar);
 
@@ -61,7 +61,7 @@ class PhotoController extends Controller
                 'gambar' => $gambar,
             ]);
 
-            
+
             if (!$photo) {
                 session()->flash('error', 'Data gagal ditambah');
                 return redirect(route('photo.show', $data->slug));
@@ -93,10 +93,14 @@ class PhotoController extends Controller
      */
     public function show($slug)
     {
-        $pesanan = Pesanan::where('slug', $slug)->first();
-        $title = "Photo: $pesanan->nama1 dan $pesanan->nama2";
-        $photo = Photo::where('id_pesanan', $pesanan->id)->paginate(4);
-        return view('photo.show', ['title' => $title, 'photo' => $photo, 'pesanan' => $pesanan]);
+        if (Auth::user()->id_role == "admin") {
+            $pesanan = Pesanan::where('slug', $slug)->first();
+            $title = "Photo: $pesanan->nama1 dan $pesanan->nama2";
+            $photo = Photo::where('id_pesanan', $pesanan->id)->paginate(4);
+            return view('photo.show', ['title' => $title, 'photo' => $photo, 'pesanan' => $pesanan]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -127,7 +131,7 @@ class PhotoController extends Controller
         $data = Pesanan::find($request->id_pesanan);
         if ($request->hasFile('gambar')) {
             $resorce  = $request->file('gambar');
-            $gambar   = time() .'-'.$data->slug . '-' . $resorce->getClientOriginalName();
+            $gambar   = time() . '-' . $data->slug . '-' . $resorce->getClientOriginalName();
             // $resorce->move(\base_path() . "/assets/images", $gambar);
             $resorce->move(public_path() . '/assets/images', $gambar);
 

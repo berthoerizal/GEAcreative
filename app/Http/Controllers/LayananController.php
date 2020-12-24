@@ -21,9 +21,13 @@ class LayananController extends Controller
      */
     public function index()
     {
-        $title = "Layanan";
-        $layanan = Layanan::all();
-        return view('layanan.index', ['title' => $title, 'layanan' => $layanan]);
+        if (Auth::user()->id_role == "admin") {
+            $title = "Layanan";
+            $layanan = Layanan::all();
+            return view('layanan.index', ['title' => $title, 'layanan' => $layanan]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -33,8 +37,12 @@ class LayananController extends Controller
      */
     public function create()
     {
-        $title = "Tambah Layanan";
-        return view('layanan.create', ['title' => $title]);
+        if (Auth::user()->id_role == "admin") {
+            $title = "Tambah Layanan";
+            return view('layanan.create', ['title' => $title]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -118,9 +126,13 @@ class LayananController extends Controller
      */
     public function edit($slug)
     {
-        $title = "Edit Layanan";
-        $layanan = DB::table('layanans')->where('slug', $slug)->first();
-        return view('layanan.edit', ['title' => $title, 'layanan' => $layanan]);
+        if (Auth::user()->id_role == "admin") {
+            $title = "Edit Layanan";
+            $layanan = DB::table('layanans')->where('slug', $slug)->first();
+            return view('layanan.edit', ['title' => $title, 'layanan' => $layanan]);
+        } else {
+            abort(404);
+        }
     }
 
     /**

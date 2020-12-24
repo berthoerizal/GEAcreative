@@ -53,10 +53,15 @@
                                     <td class="text-center"><?php echo date('d M Y',
                                         strtotime($galeri->created_at)); ?></td>
                                     <td>
-                                        <a class="btn btn-primary btn-sm"
-                                            href="{{ route('galeri.edit', $galeri->slug) }}"><i
-                                                class="fa fa-pencil-alt"></i> Edit</a>
-                                        @include('galeri.delete')
+                                        @if(Auth::user()->id == $galeri->id_user)
+                                            <a class="btn btn-primary btn-sm"
+                                                href="{{ route('galeri.edit', $galeri->slug) }}"><i
+                                                    class="fa fa-pencil-alt"></i> Edit</a>
+                                            @include('galeri.delete')
+                                        @else
+                                            <button type="button" class="btn btn-primary btn-sm" disabled><i class="fa fa-pencil-alt"></i> Edit</button>
+                                            <button type="button" class="btn btn-danger btn-sm" disabled><i class="fa fa-trash-alt"></i> Hapus</button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

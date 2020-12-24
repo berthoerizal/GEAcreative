@@ -20,8 +20,12 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <div class="float-right">
-                    <a href="{{ route('pesanan.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>
-                        Tambah</a>
+                    @if (Auth::user()->id_role == 'admin')
+                        <a href="{{ route('pesanan.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>
+                            Tambah</a>
+                    @else 
+                        <button type="button" class="btn btn-primary btn-sm" disabled><i class="fa fa-plus"></i> Tambah</button>
+                    @endif
                 </div>
             </div>
             <div class="card-body">
@@ -34,7 +38,7 @@
                                 <th class="text-center">Layanan</th>
                                 <th class="text-center">Bayar</th>
                                 <th class="text-center">Status</th>
-                                <th width="30%" class="text-center">Aksi</th>
+                                <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,19 +48,30 @@
                                     <td>{{ $pesanan->pemesan }}<br><i>Nomor Hp: +62{{ $pesanan->nomor_hp }}</i></td>
                                     <td><b>{{ $pesanan->nama_layanan }}</b><br><i>{{ $pesanan->nama_paket }}</i></td>
                                     <td>Rp. {{ number_format($pesanan->bayar, 2, ',', '.') }}</td>
-                                    <td class="text-center">@if ($pesanan->status=="publish")
-                                        <b class="text-success">Publish</b>
-                                    @else
-                                        <b class="text-warning">Draft</b>
-                                    @endif</td>
+                                    <td class="text-center">
+                                        @if ($pesanan->status == 'publish')
+                                            <b class="text-success">Publish</b>
+                                        @else
+                                            <b class="text-warning">Draft</b>
+                                        @endif
+                                    </td>
                                     <td>
-                                        <a class="btn btn-primary btn-sm"
-                                            href="{{ route('pesanan.edit', $pesanan->slug) }}"><i
-                                                class="fa fa-pencil-alt"></i> Edit</a>
-                                        <a class="btn btn-primary btn-sm" href="{{ route('photo.show', $pesanan->slug) }}"><i
-                                                class="fa fa-image"></i>
-                                            Photo</a>
-                                        @include('pesanan.delete')
+                                        @if (Auth::user()->id_role == 'admin')
+                                            <a class="btn btn-primary btn-sm"
+                                                href="{{ route('pesanan.edit', $pesanan->slug) }}"><i
+                                                    class="fa fa-pencil-alt"></i> Edit</a>
+                                            <a class="btn btn-primary btn-sm"
+                                                href="{{ route('photo.show', $pesanan->slug) }}"><i class="fa fa-image"></i>
+                                                Photo</a>
+                                        @endif
+
+                                        <a class="btn btn-primary btn-sm" href=""><i class="fa fa-file-archive"></i>
+                                            Detail</a>
+
+                                        @if (Auth::user()->id_role == 'admin')
+                                            @include('pesanan.delete')
+                                        @endif
+
                                     </td>
                                 </tr>
                             @endforeach

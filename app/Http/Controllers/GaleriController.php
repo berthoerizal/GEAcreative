@@ -133,7 +133,12 @@ class GaleriController extends Controller
     {
         $title = "Edit Galeri";
         $galeri = Galeri::where('slug', $slug)->first();
-        return view('galeri.edit', ['title' => $title, 'galeri' => $galeri]);
+        
+        if (Auth::user()->id == $galeri->id_user) {
+            return view('galeri.edit', ['title' => $title, 'galeri' => $galeri]);
+        } else {
+            abort(404);
+        }
     }
 
     /**

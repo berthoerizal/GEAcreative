@@ -42,17 +42,21 @@ class PesananController extends Controller
      */
     public function create()
     {
-        $title = "Tambah Pesanan";
-        $galeri = DB::table('galeris')->where('jenis', 'undangan')->get();
-        $paket = DB::table('pakets')
-            ->join('layanans', 'pakets.id_layanan', '=', 'layanans.id')
-            ->select(DB::raw('pakets.harga-(pakets.harga*pakets.diskon/100) as total_bayar'), 'pakets.id', 'pakets.nama_paket', 'layanans.nama_layanan', 'layanans.status_layanan')
-            ->where('status_layanan', 'publish')
-            ->orderBy('nama_layanan', 'asc')
-            ->orderBy('total_bayar', 'asc')
-            ->get();
+        if (Auth::user()->id_role == "admin") {
+            $title = "Tambah Pesanan";
+            $galeri = DB::table('galeris')->where('jenis', 'undangan')->get();
+            $paket = DB::table('pakets')
+                ->join('layanans', 'pakets.id_layanan', '=', 'layanans.id')
+                ->select(DB::raw('pakets.harga-(pakets.harga*pakets.diskon/100) as total_bayar'), 'pakets.id', 'pakets.nama_paket', 'layanans.nama_layanan', 'layanans.status_layanan')
+                ->where('status_layanan', 'publish')
+                ->orderBy('nama_layanan', 'asc')
+                ->orderBy('total_bayar', 'asc')
+                ->get();
 
-        return view('pesanan.create', ['title' => $title, 'paket' => $paket, 'galeri' => $galeri]);
+            return view('pesanan.create', ['title' => $title, 'paket' => $paket, 'galeri' => $galeri]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -65,7 +69,7 @@ class PesananController extends Controller
     {
         $pasangan = "$request->nama1 dan $request->nama2";
         $paket = Paket::find($request->id_paket);
-        $bayar = $paket->harga-($paket->harga*$paket->diskon/100);
+        $bayar = $paket->harga - ($paket->harga * $paket->diskon / 100);
         $pesanan = Pesanan::create([
             'id_layanan' => $paket->id_layanan,
             'id_paket' => $request->id_paket,
@@ -124,17 +128,21 @@ class PesananController extends Controller
      */
     public function edit($slug)
     {
-        $title = "Edit Pesanan";
-        $pesanan = DB::table('pesanans')->where('slug', $slug)->first();
-        $galeri = DB::table('galeris')->where('jenis', 'undangan')->get();
-        $paket = DB::table('pakets')
-            ->join('layanans', 'pakets.id_layanan', '=', 'layanans.id')
-            ->select(DB::raw('pakets.harga-(pakets.harga*pakets.diskon/100) as total_bayar'), 'pakets.id', 'pakets.nama_paket', 'layanans.nama_layanan', 'layanans.status_layanan')
-            ->where('status_layanan', 'publish')
-            ->orderBy('nama_layanan', 'asc')
-            ->orderBy('total_bayar', 'asc')
-            ->get();
-        return view('pesanan.edit', ['title' => $title, 'paket' => $paket, 'galeri' => $galeri, 'pesanan' => $pesanan]);
+        if (Auth::user()->id_role == "admin") {
+            $title = "Edit Pesanan";
+            $pesanan = DB::table('pesanans')->where('slug', $slug)->first();
+            $galeri = DB::table('galeris')->where('jenis', 'undangan')->get();
+            $paket = DB::table('pakets')
+                ->join('layanans', 'pakets.id_layanan', '=', 'layanans.id')
+                ->select(DB::raw('pakets.harga-(pakets.harga*pakets.diskon/100) as total_bayar'), 'pakets.id', 'pakets.nama_paket', 'layanans.nama_layanan', 'layanans.status_layanan')
+                ->where('status_layanan', 'publish')
+                ->orderBy('nama_layanan', 'asc')
+                ->orderBy('total_bayar', 'asc')
+                ->get();
+            return view('pesanan.edit', ['title' => $title, 'paket' => $paket, 'galeri' => $galeri, 'pesanan' => $pesanan]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -148,7 +156,7 @@ class PesananController extends Controller
     {
         $pasangan = "$request->nama1 dan $request->nama2";
         $paket = Paket::find($request->id_paket);
-        $bayar = $paket->harga-($paket->harga*$paket->diskon/100);
+        $bayar = $paket->harga - ($paket->harga * $paket->diskon / 100);
         $pesanan = Pesanan::find($id);
         $pesanan->update([
             'id_layanan' => $paket->id_layanan,

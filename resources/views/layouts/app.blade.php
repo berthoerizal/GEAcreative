@@ -69,6 +69,7 @@
                     <span>Profile</span></a>
             </li>
 
+            @if(Auth::user()->id_role == "admin")
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="fa fa-users"></i>
@@ -80,6 +81,7 @@
                     <i class="fa fa-book"></i>
                     <span>Layanan</span></a>
             </li>
+            @endif
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('galeri.index') }}">
@@ -93,11 +95,13 @@
                     <span>Pesanan</span></a>
             </li>
 
+            @if(Auth::user()->id_role == "admin")
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('konfigurasi.index') }}">
                     <i class="fa fa-wrench"></i>
                     <span>Konfigurasi</span></a>
             </li>
+            @endif
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -48,7 +48,7 @@ class PaketController extends Controller
             'keterangan' => 'required'
         ]);
 
-        if($request->diskon==NULL){
+        if ($request->diskon == NULL) {
             $diskon = 0;
         } else {
             $diskon = $request->diskon;
@@ -79,14 +79,18 @@ class PaketController extends Controller
      */
     public function show($slug)
     {
-        $layanan = Layanan::where('slug', $slug)->first();
-        $title = "Harga: $layanan->nama_layanan";
-        $paket = DB::table('pakets')
-            ->join('layanans', 'pakets.id_layanan', '=', 'layanans.id')
-            ->select('pakets.*', 'layanans.nama_layanan', 'layanans.slug')
-            ->where('id_layanan', $layanan->id)
-            ->get();
-        return view('paket.show', ['title' => $title, 'paket' => $paket, 'layanan' => $layanan]);
+        if (Auth::user()->id_role == "admin") {
+            $layanan = Layanan::where('slug', $slug)->first();
+            $title = "Harga: $layanan->nama_layanan";
+            $paket = DB::table('pakets')
+                ->join('layanans', 'pakets.id_layanan', '=', 'layanans.id')
+                ->select('pakets.*', 'layanans.nama_layanan', 'layanans.slug')
+                ->where('id_layanan', $layanan->id)
+                ->get();
+            return view('paket.show', ['title' => $title, 'paket' => $paket, 'layanan' => $layanan]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -109,10 +113,10 @@ class PaketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $paket = Paket::find($id);
 
-        if($request->diskon==NULL){
+        if ($request->diskon == NULL) {
             $diskon = 0;
         } else {
             $diskon = $request->diskon;
