@@ -93,17 +93,31 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="ortu1">Nama Orang Tua dari Pria</label>
+                            <label for="ayah1">Nama Ayah dari Pria</label>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-sm" name="ortu1" id="ortu1"
-                                    value="{{ $pesanan->ortu1 }}">
+                                <input type="text" class="form-control form-control-sm" name="ayah1" id="ayah1"
+                                    value="{{ $pesanan->ayah1 }}">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="ortu2">Nama Orang Tua dari Wanita</label>
+                            <label for="ayah2">Nama Ayah dari Wanita</label>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-sm" name="ortu2" id="ortu2"
-                                    value="{{ $pesanan->ortu2 }}">
+                                <input type="text" class="form-control form-control-sm" name="ayah2" id="ayah2"
+                                    value="{{ $pesanan->ayah2 }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ibu1">Nama Ibu dari Pria</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-sm" name="ibu1" id="ibu1"
+                                    value="{{ $pesanan->ibu1 }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ibu2">Nama Ibu dari Wanita</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-sm" name="ibu2" id="ibu2"
+                                    value="{{ $pesanan->ibu2 }}">
                             </div>
                         </div>
                         <div class="col-md-4">

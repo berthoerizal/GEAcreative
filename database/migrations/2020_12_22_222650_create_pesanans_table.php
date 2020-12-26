@@ -27,8 +27,10 @@ class CreatePesanansTable extends Migration
             $table->string('nama2')->nullable();
             $table->string('nama_lengkap1')->nullable();
             $table->string('nama_lengkap2')->nullable();
-            $table->string('ortu1')->nullable();
-            $table->string('ortu2')->nullable();
+            $table->string('ayah1')->nullable();
+            $table->string('ibu1')->nullable();
+            $table->string('ayah2')->nullable();
+            $table->string('ibu2')->nullable();
             $table->text('quotes')->nullable();
             $table->date('tanggal1')->nullable();
             $table->time('waktu1')->nullable();
