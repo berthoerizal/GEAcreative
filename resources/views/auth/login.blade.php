@@ -43,16 +43,16 @@
         <div class="panels-container">
             <div class="panel left-panel">
                 <div class="content">
-                    <h3>Belum punya akun ?</h3>
+                    <h3>Apa itu GEAcrative ?</h3>
                     <p>
                         <a href="{{ url('/') }}"
                             style="text-decoration:none; color: white;"><b>{{ $konfigurasi->namaweb }}</b></a> adalah
                         sistem yang menyediakan fungsi atau fitur yang biasanya dibutuhkan dalam pembuatan website
                         dengan framework Laravel.
                     </p>
-                    <a href="{{ route('register') }}"><button class="btn btn-outline-primary"
+                    {{-- <a href="{{ route('register') }}"><button class="btn btn-outline-primary"
                             id="sign-up-btn">Register</button>
-                    </a>
+                    </a> --}}
                 </div>
                 <img src="{{ asset('assets/login/img/log.svg') }}" class="image" alt="" />
             </div>
