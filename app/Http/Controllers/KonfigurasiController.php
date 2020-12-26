@@ -93,7 +93,8 @@ class KonfigurasiController extends Controller
             'desc' => $request->desc,
             'email' => $request->email,
             'nomor_hp' => $request->nomor_hp,
-            'instagram' => $request->instagram
+            'instagram' => $request->instagram,
+            'keywords' => $request->keywords
         ]);
 
         if (!$konfig) {

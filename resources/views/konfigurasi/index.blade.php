@@ -37,6 +37,11 @@
                                             placeholder="Nama Website" value="{{ $konfig->namaweb }}" required>
                                     </div>
                                     <div class="form-group">
+                                        <label for="keywords">Keywords</label>
+                                        <input type="text" class="form-control form-control" name="keywords" id="keywords"
+                                            placeholder="Keywords" value="{{ $konfig->keywords }}" required>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="lokasi">Lokasi</label>
                                         <textarea name="lokasi" class="form-control form-control"
                                             id="lokasi">{{ $konfig->lokasi }}</textarea>
@@ -48,6 +53,15 @@
                                 </div>
                             </div>
                             <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="desc">Deskripsi Website</label>
+                                        <textarea name="desc" id="desc" class="form-control" cols="30"
+                                            rows="5">{{ $konfig->desc }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -71,15 +85,6 @@
                                         <label for="instagram">Instagram</label>
                                         <input type="text" class="form-control form-control" name="instagram" id="instagram"
                                             placeholder="instagram" value="{{ $konfig->instagram }}" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="desc">Deskripsi Website</label>
-                                        <textarea name="desc" id="desc" class="form-control textarea-tinymce" cols="30"
-                                            rows="10">{{ $konfig->desc }}</textarea>
                                     </div>
                                 </div>
                             </div>

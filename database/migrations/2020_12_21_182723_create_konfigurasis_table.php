@@ -19,6 +19,7 @@ class CreateKonfigurasisTable extends Migration
             $table->string('namaweb');
             $table->text('lokasi')->nullable();
             $table->text('desc')->nullable();
+            $table->string('keywords')->nullable();
             $table->string('email')->nullable();
             $table->string('nomor_hp')->nullable();
             $table->string('instagram')->nullable();
