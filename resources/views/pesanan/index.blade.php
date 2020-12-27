@@ -56,17 +56,18 @@
                                         @endif
                                     </td>
                                     <td>
+                                        
+                                        <a class="btn btn-primary btn-sm" href=""><i class="fa fa-file-archive"></i>
+                                            Detail</a>
+
                                         @if (Auth::user()->id_role == 'admin')
+                                            <a class="btn btn-primary btn-sm"
+                                            href="{{ route('photo.show', $pesanan->slug) }}"><i class="fa fa-image"></i>
+                                            Photo</a>
                                             <a class="btn btn-primary btn-sm"
                                                 href="{{ route('pesanan.edit', $pesanan->slug) }}"><i
                                                     class="fa fa-pencil-alt"></i> Edit</a>
-                                            <a class="btn btn-primary btn-sm"
-                                                href="{{ route('photo.show', $pesanan->slug) }}"><i class="fa fa-image"></i>
-                                                Photo</a>
                                         @endif
-
-                                        <a class="btn btn-primary btn-sm" href=""><i class="fa fa-file-archive"></i>
-                                            Detail</a>
 
                                         @if (Auth::user()->id_role == 'admin')
                                             @include('pesanan.delete')

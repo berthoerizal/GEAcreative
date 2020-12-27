@@ -20,7 +20,8 @@ class CreateGalerisTable extends Migration
             $table->integer('id_user');
             $table->string('judul');
             $table->string('slug');
-            $table->string('gambar');
+            $table->string('gambar')->nullable();
+            $table->string('link_video')->nullable();
             $table->integer('kode')->unique();
             $table->timestamps();
         });

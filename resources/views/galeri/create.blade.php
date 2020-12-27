@@ -35,7 +35,9 @@
                                         <div class="form-group">
                                             <label for="jenis">Jenis Galeri</label>
                                             <select class="form-control" id="jenis" name="jenis">
-                                                <option value="undangan">Undangan</option>
+                                                <option value="undangan_website">Undangan Website</option>
+                                                <option value="undangan_video">Undangan Video</option>
+                                                <option value="undangan_gambar">Undangan Gambar</option>
                                             </select>
                                         </div>
                                     </div>
@@ -49,6 +51,15 @@
                                                 class="form-control" id="basic-url" aria-describedby="basic-addon3" readonly>
                                         </div>
                                         <p><span style="color: red;">*</span>Kode Item harus sama dengan nama template!</p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="link_video">Link Video</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon3">https://www.youtube.com/watch?v=</span>
+                                            </div>
+                                            <input type="text" name="link_video" id="link_video" value="{{old('link_video')}}" placeholder="Kode Video Youtube" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                        </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group row">

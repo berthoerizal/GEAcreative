@@ -36,7 +36,18 @@
                                         <div class="form-group">
                                             <label for="jenis">Jenis</label>
                                             <select class="form-control" id="jenis" name="jenis">
-                                                <option value="undangan">Undangan</option>
+                                                <option value="undangan_website"
+                                                @if ($galeri->jenis == 'undangan_website')
+                                                selected
+                                                @endif>Undangan Website</option>
+                                                <option value="undangan_video"
+                                                @if ($galeri->jenis == 'undangan_video')
+                                                selected
+                                                @endif>Undangan Video</option>
+                                                <option value="undangan_gambar"
+                                                @if ($galeri->jenis == 'undangan_gambar')
+                                                selected
+                                                @endif>Undangan Gambar</option>
                                             </select>
                                         </div>
                                     </div>
@@ -50,6 +61,15 @@
                                                 class="form-control" id="basic-url" aria-describedby="basic-addon3" readonly>
                                         </div>
                                         <p><span style="color: red;">*</span>Kode Item harus sama dengan nama template!</p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="link_video">Link Video</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon3">https://www.youtube.com/watch?v=</span>
+                                            </div>
+                                            <input type="text" name="link_video" id="link_video" value="{{$galeri->link_video}}" placeholder="Kode Video Youtube" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                        </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group row">

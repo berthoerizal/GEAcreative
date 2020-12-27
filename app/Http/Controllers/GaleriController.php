@@ -79,11 +79,12 @@ class GaleriController extends Controller
 
             $galeri = Galeri::create([
                 'judul' => $request->judul,
-                'slug' => Str::slug($request->judul),
+                'slug' => Str::slug($request->judul).'-'.time(),
                 'gambar' => $gambar,
                 'jenis' => $request->jenis,
                 'id_user' => Auth::user()->id,
-                'kode' => $request->kode_item
+                'kode' => $request->kode_item,
+                'link_video' => $request->link_video
             ]);
 
             if (!$galeri) {
@@ -96,10 +97,11 @@ class GaleriController extends Controller
         } else {
             $galeri = Galeri::create([
                 'judul' => $request->judul,
-                'slug' => Str::slug($request->judul),
+                'slug' => Str::slug($request->judul).'-'.time(),
                 'jenis' => $request->jenis,
                 'id_user' => Auth::user()->id,
-                'kode' => $request->kode_item
+                'kode' => $request->kode_item,
+                'link_video' => $request->link_video
             ]);
 
             if (!$galeri) {
@@ -118,9 +120,18 @@ class GaleriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $title = "Detail Galeri";
+        $galeri = DB::table('galeris')
+        ->join('users', 'galeris.id_user', '=', 'users.id')
+        ->select('galeris.*', 'users.name')
+        ->where('slug', $slug)
+        ->first();
+        return view('galeri.show', [
+            'title' => $title,
+            'galeri' => $galeri
+        ]);
     }
 
     /**
@@ -169,11 +180,12 @@ class GaleriController extends Controller
 
             $galeri->update([
                 'judul' => $request->judul,
-                'slug' => Str::slug($request->judul),
+                'slug' => Str::slug($request->judul).'-'.time(),
                 'gambar' => $gambar,
                 'jenis' => $request->jenis,
                 'id_user' => Auth::user()->id,
-                'kode' => $request->kode
+                'kode' => $request->kode,
+                'link_video' => $request->link_video
             ]);
 
             if (!$galeri) {
@@ -188,10 +200,11 @@ class GaleriController extends Controller
             $galeri = Galeri::find($id);
             $galeri->update([
                 'judul' => $request->judul,
-                'slug' => Str::slug($request->judul),
+                'slug' => Str::slug($request->judul).'-'.time(),
                 'jenis' => $request->jenis,
                 'id_user' => Auth::user()->id,
-                'kode' => $request->kode
+                'kode' => $request->kode,
+                'link_video' => $request->link_video
             ]);
 
             if (!$galeri) {

@@ -349,7 +349,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero h1 {
   margin: 0;
-  font-size: 48px;
+  font-size: 30px;
   font-weight: 700;
   line-height: 56px;
   color: #3e4450;
@@ -358,7 +358,8 @@ h1, h2, h3, h4, h5, h6 {
 #hero h2 {
   color: #858ea1;
   margin: 10px 0  30px 0;
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 30px;
 }
 
 #hero .btn-get-started {
@@ -372,7 +373,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.5s;
   color: #fff;
   background: #4FB0FA;
-  box-shadow: 0 8px 28px rgba(22, 223, 126, 0.45);
+  box-shadow: 0 8px 28px rgba(32, 107, 251, 0.45);
 }
 
 #hero .btn-get-started:hover {
@@ -627,6 +628,8 @@ section {
   padding: 80px 20px;
   transition: all ease-in-out 0.3s;
   background: #fff;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
 .services .icon-box .icon {
@@ -647,7 +650,7 @@ section {
 .services .icon-box h4 {
   font-weight: 700;
   margin-bottom: 15px;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .services .icon-box h4 a {

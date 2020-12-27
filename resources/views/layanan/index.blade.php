@@ -49,15 +49,15 @@
                                         <b class="text-warning">Draft</b>
                                     @endif</td>
                                     <td>
-                                        <a class="btn btn-primary btn-sm"
-                                            href="{{ route('layanan.edit', $layanan->slug) }}"><i
-                                                class="fa fa-pencil-alt"></i> Edit</a>
                                         <a class="btn btn-primary btn-sm" href="{{ route('detail.show', $layanan->slug) }}"><i
                                                 class="fa fa-plus"></i>
                                             Detail</a>
                                         <a class="btn btn-primary btn-sm"
                                             href="{{ route('harga.show', $layanan->slug) }}"><i class="fas fa-dollar-sign"></i>
                                             Harga</a>
+                                        <a class="btn btn-primary btn-sm"
+                                            href="{{ route('layanan.edit', $layanan->slug) }}"><i
+                                                class="fa fa-pencil-alt"></i> Edit</a>
                                         @include('layanan.delete')
                                     </td>
                                 </tr>

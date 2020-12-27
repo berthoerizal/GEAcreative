@@ -44,7 +44,11 @@ class PesananController extends Controller
     {
         if (Auth::user()->id_role == "admin") {
             $title = "Tambah Pesanan";
-            $galeri = DB::table('galeris')->where('jenis', 'undangan')->get();
+            $galeri = DB::table('galeris')
+            ->where('jenis', 'undangan_website')
+            ->orWhere('jenis', 'undangan_gambar')
+            ->orWhere('jenis', 'undangan_video')
+            ->get();
             $paket = DB::table('pakets')
                 ->join('layanans', 'pakets.id_layanan', '=', 'layanans.id')
                 ->select(DB::raw('pakets.harga-(pakets.harga*pakets.diskon/100) as total_bayar'), 'pakets.id', 'pakets.nama_paket', 'layanans.nama_layanan', 'layanans.status_layanan')
@@ -133,7 +137,11 @@ class PesananController extends Controller
         if (Auth::user()->id_role == "admin") {
             $title = "Edit Pesanan";
             $pesanan = DB::table('pesanans')->where('slug', $slug)->first();
-            $galeri = DB::table('galeris')->where('jenis', 'undangan')->get();
+            $galeri = DB::table('galeris')
+            ->where('jenis', 'undangan_website')
+            ->orWhere('jenis', 'undangan_gambar')
+            ->orWhere('jenis', 'undangan_video')
+            ->get();
             $paket = DB::table('pakets')
                 ->join('layanans', 'pakets.id_layanan', '=', 'layanans.id')
                 ->select(DB::raw('pakets.harga-(pakets.harga*pakets.diskon/100) as total_bayar'), 'pakets.id', 'pakets.nama_paket', 'layanans.nama_layanan', 'layanans.status_layanan')

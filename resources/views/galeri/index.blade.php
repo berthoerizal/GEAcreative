@@ -28,7 +28,7 @@
                                 <th class="text-center">Judul</th>
                                 <th class="text-center">Jenis</th>
                                 <th class="text-center">Tanggal Upload</th>
-                                <th width="20%" class="text-center">Aksi</th>
+                                <th width="25%" class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,19 +46,20 @@
                                         @endif
                                     </td>
                                     <td><b>{{ $galeri->judul }}</b><br><i>Oleh: {{ $galeri->name }}</i></td>
-                                    <td class="text-center"><b>
-                                        @if ($galeri->jenis=="undangan")
-                                            Undangan
-                                        @endif</b></td>
+                                    <td class="text-center"><b>{{$galeri->jenis}}</b></td>
                                     <td class="text-center"><?php echo date('d M Y',
                                         strtotime($galeri->created_at)); ?></td>
                                     <td>
                                         @if(Auth::user()->id == $galeri->id_user)
+                                            <a class="btn btn-primary btn-sm" href="{{ route('galeri.show', $galeri->slug) }}"><i class="fa fa-file-archive"></i>
+                                            Detail</a>
                                             <a class="btn btn-primary btn-sm"
                                                 href="{{ route('galeri.edit', $galeri->slug) }}"><i
                                                     class="fa fa-pencil-alt"></i> Edit</a>
                                             @include('galeri.delete')
                                         @else
+                                            <a class="btn btn-primary btn-sm" href="{{ route('galeri.show', $galeri->slug) }}"><i class="fa fa-file-archive"></i>
+                                            Detail</a>
                                             <button type="button" class="btn btn-primary btn-sm" disabled><i class="fa fa-pencil-alt"></i> Edit</button>
                                             <button type="button" class="btn btn-danger btn-sm" disabled><i class="fa fa-trash-alt"></i> Hapus</button>
                                         @endif
