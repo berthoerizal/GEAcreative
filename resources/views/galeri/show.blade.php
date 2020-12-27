@@ -66,7 +66,7 @@
                             @else
                             <div class="border border-primary">
                                 <div class="embed-responsive embed-responsive-1by1">
-                                    <iframe width="420" height="315" src="https://www.youtube.com/embed/{{$galeri->link_video}}" frameborder="0" allowfullscreen></iframe>
+                                    <iframe width="420" height="300" src="https://www.youtube.com/embed/{{$galeri->link_video}}" frameborder="0" allowfullscreen></iframe>
                                 </div>
                             </div>
                             @endif

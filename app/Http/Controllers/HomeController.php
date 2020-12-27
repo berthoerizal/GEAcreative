@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Konfigurasi;
-
 class HomeController extends Controller
 {
     public function index(){
@@ -16,12 +14,18 @@ class HomeController extends Controller
         ->where('status_layanan', 'publish')
         ->orderBy('id_layanan', 'asc')
         ->get();
-        $galeri = DB::table('galeris')->all(); 
+        $galeri_website = DB::table('galeris')->where('jenis', 'undangan_website')->get();
+        $galeri_gambar = DB::table('galeris')->where('jenis', 'undangan_gambar')->get();
+        $galeri_video = DB::table('galeris')->where('jenis', 'undangan_video')->get();
+        $users = DB::table('users')->select('name', 'gambar')->get();
 
         return view('welcome', [
             'layanan' => $layanan,
             'detail' => $detail,
-            'galeri' => $galeri
+            'galeri_website' => $galeri_website,
+            'galeri_gambar' => $galeri_gambar,
+            'galeri_video' => $galeri_video,
+            'users' => $users
         ]);
     }
 }

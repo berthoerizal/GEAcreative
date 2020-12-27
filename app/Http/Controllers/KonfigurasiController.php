@@ -89,8 +89,10 @@ class KonfigurasiController extends Controller
         $konfig->update([
             'author' => $request->author,
             'namaweb' => $request->namaweb,
-            'lokasi' => $request->lokasi,
-            'desc' => $request->desc,
+            'lokasi_googlemaps' => $request->lokasi_googlemaps,
+            'alamat' => $request->alamat,
+            'desc1' => $request->desc1,
+            'desc2' => $request->desc2,
             'email' => $request->email,
             'nomor_hp' => $request->nomor_hp,
             'instagram' => $request->instagram,

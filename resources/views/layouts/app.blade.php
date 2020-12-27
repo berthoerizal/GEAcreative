@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{ $konfigurasi->desc }}">
+    <meta name="description" content="{{ $konfigurasi->desc1 }}">
     <meta name="author" content="{{ $konfigurasi->author }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $konfigurasi->namaweb }}</title>
@@ -206,7 +206,7 @@
                 });
                 tinymce.init({
                     selector: '.textarea-tinymce',
-                    height: 100,
+                    height: 200,
                     theme: 'modern',
                     plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
                     toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',

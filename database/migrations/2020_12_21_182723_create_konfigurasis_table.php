@@ -17,8 +17,10 @@ class CreateKonfigurasisTable extends Migration
             $table->bigIncrements('id');
             $table->string('author');
             $table->string('namaweb');
-            $table->text('lokasi')->nullable();
-            $table->text('desc')->nullable();
+            $table->text('lokasi_googlemaps')->nullable();
+            $table->text('alamat')->nullable();
+            $table->text('desc1')->nullable();
+            $table->text('desc2')->nullable();
             $table->string('keywords')->nullable();
             $table->string('email')->nullable();
             $table->string('nomor_hp')->nullable();

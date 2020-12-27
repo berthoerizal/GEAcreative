@@ -42,13 +42,18 @@
                                             placeholder="Keywords" value="{{ $konfig->keywords }}" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="lokasi">Lokasi</label>
-                                        <textarea name="lokasi" class="form-control form-control"
-                                            id="lokasi">{{ $konfig->lokasi }}</textarea>
+                                        <label for="alamat">Alamat Lengkap</label>
+                                        <textarea name="alamat" class="form-control form-control"
+                                            id="alamat">{{ $konfig->alamat }}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lokasi_googlemaps">Google Maps</label>
+                                        <textarea name="lokasi_googlemaps" class="form-control form-control"
+                                            id="lokasi_googlemaps">{{ $konfig->lokasi_googlemaps }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <iframe src="{{ $konfig->lokasi }}" width="100%" height="100%" frameborder="0"
+                                    <iframe src="{{ $konfig->lokasi_googlemaps }}" width="100%" height="100%" frameborder="0"
                                         style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                                 </div>
                             </div>
@@ -56,9 +61,16 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="desc">Deskripsi Website</label>
-                                        <textarea name="desc" id="desc" class="form-control" cols="30"
-                                            rows="5">{{ $konfig->desc }}</textarea>
+                                        <label for="desc1">Deskripsi 1</label>
+                                        <textarea name="desc1" id="desc1" class="form-control" cols="30"
+                                            rows="3">{{ $konfig->desc1 }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="desc2">Deskripsi 2</label>
+                                        <textarea name="desc2" id="desc2" class="form-control textarea-tinymce" cols="30"
+                                            rows="10">{{ $konfig->desc2 }}</textarea>
                                     </div>
                                 </div>
                             </div>
