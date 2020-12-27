@@ -218,9 +218,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .get-started-btn:hover {
-  background: #206bfb;
+  background: #4FB0FA;
   color: #fff;
-  border-color: #206bfb;
+  border-color: #4FB0FA;
 }
 
 @media (max-width: 768px) {
@@ -352,7 +352,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 30px;
   font-weight: 700;
   line-height: 56px;
-  color: #3e4450;
+  color: #5f687b;
 }
 
 #hero h2 {
@@ -360,6 +360,20 @@ h1, h2, h3, h4, h5, h6 {
   margin: 10px 0  30px 0;
   font-size: 20px;
   line-height: 30px;
+}
+
+.btn-pilih{
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 4px;
+  transition: 0.5s;
+  color: #fff;
+  background: #4FB0FA;
+  box-shadow: 0 8px 28px rgba(22, 223, 126, 0.45)
 }
 
 #hero .btn-get-started {
@@ -373,11 +387,11 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.5s;
   color: #fff;
   background: #4FB0FA;
-  box-shadow: 0 8px 28px rgba(32, 107, 251, 0.45);
+  box-shadow: 0 8px 28px rgba(22, 223, 126, 0.45)
 }
 
 #hero .btn-get-started:hover {
-  background: #206bfb;
+  background: #4FB0FA;
   box-shadow: 0 8px 28px rgba(32, 107, 251, 0.45);
 }
 
@@ -471,7 +485,7 @@ section {
 }
 
 .section-bg {
-  background-color: #f9f9fa;
+  background-color: #F3FBFB;
 }
 
 .section-title {
@@ -524,49 +538,45 @@ section {
 # Featured Services
 --------------------------------------------------------------*/
 .featured-services {
+  padding: 0 0 50px 0;
+}
+
+.featured-services .box {
+  padding: 50px 30px;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  transition: all ease-in-out 0.3s;
+}
+
+.featured-services .box span {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #b9b9fa;
+}
+
+.featured-services .box h4 {
+  font-size: 24px;
+  font-weight: 600;
+  padding: 0;
+  margin: 20px 0;
+  color: #5f687b;
+}
+
+.featured-services .box p {
+  color: #aaaaaa;
+  font-size: 15px;
+  margin: 0;
   padding: 0;
 }
 
-.featured-services .icon-box {
-  padding: 20px;
-  color: #5f687b;
-  background: #f9f9fa;
-  border-radius: 4px;
-  border: 1px solid #f9f9fa;
-  transition: 0.3s;
+.featured-services .box:hover {
+  background: #4FB0FA;
+  padding: 30px 30px 70px 30px;
+  box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.18);
 }
 
-.featured-services .icon {
-  margin: 0 0 15px 0;
-}
-
-.featured-services .icon i {
-  color: #4FB0FA;
-  font-size: 36px;
-}
-
-.featured-services .title {
-  font-weight: 600;
-  margin-bottom: 15px;
-  font-size: 18px;
-}
-
-.featured-services .title a {
-  color: #5f687b;
-  transition: 0.3s;
-}
-
-.featured-services .icon-box:hover {
-  border-color: #eaecef;
-}
-
-.featured-services .icon-box:hover .title a {
-  color: #4FB0FA;
-}
-
-.featured-services .description {
-  line-height: 24px;
-  font-size: 14px;
+.featured-services .box:hover span, .featured-services .box:hover h4, .featured-services .box:hover p {
+  color: #fff;
 }
 
 /*--------------------------------------------------------------
@@ -625,11 +635,15 @@ section {
 .services .icon-box {
   text-align: center;
   border: 1px solid #fff;
-  padding: 80px 20px;
+  padding: 40px 20px 40px 20px;
   transition: all ease-in-out 0.3s;
   background: #fff;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   width: 100%;
+}
+
+.services .icon-box:hover {
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 .services .icon-box .icon {
@@ -755,6 +769,117 @@ section {
 }
 
 /*--------------------------------------------------------------
+# Pricing
+--------------------------------------------------------------*/
+.pricing .box {
+  padding: 20px;
+  background: #fff;
+  text-align: center;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pricing h3 {
+  font-weight: 400;
+  margin: -20px -20px 20px -20px;
+  padding: 20px 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c4964;
+  background: #f8f8f8;
+}
+
+.pricing h4 {
+  font-size: 36px;
+  color:#5f687b;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 20px;
+}
+
+.pricing h4 sup {
+  font-size: 20px;
+  top: -15px;
+  left: -3px;
+}
+
+.pricing h4 span {
+  color: #bababa;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.pricing ul {
+  padding: 0;
+  list-style: none;
+  color: #444444;
+  text-align: center;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.pricing ul li {
+  padding-bottom: 16px;
+}
+
+.pricing ul i {
+  color: #5846f9;
+  font-size: 18px;
+  padding-right: 4px;
+}
+
+.pricing ul .na {
+  color: #ccc;
+  text-decoration: line-through;
+}
+
+.pricing .btn-wrap {
+  margin: 20px -20px -20px -20px;
+  padding: 20px 15px;
+  background: #f8f8f8;
+  text-align: center;
+}
+
+.pricing .btn-buy {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 30px 10px 30px;
+  border-radius: 4px;
+  transition: 0.5s;
+  color: #fff;
+  background: #4FB0FA;
+  box-shadow: 0 8px 28px rgba(22, 223, 126, 0.45)
+}
+
+.pricing .btn-buy:hover {
+  background: linear-gradient(180deg, #5846f9 0%, #7b27d8 100%);
+}
+
+.pricing .featured h3 {
+  color: #fff;
+  background: #4FB0FA;
+}
+
+.pricing .advanced {
+  width: 200px;
+  position: absolute;
+  top: 18px;
+  right: -68px;
+  transform: rotate(45deg);
+  z-index: 1;
+  font-size: 14px;
+  padding: 1px 0 3px 0;
+  background: #5846f9;
+  color: #fff;
+}
+
+
+/*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
 .testimonials .testimonial-item {
@@ -841,7 +966,7 @@ section {
 # Cta
 --------------------------------------------------------------*/
 .cta {
-  background: #4FB0FA;
+  background: #ffffff;
   background-size: cover;
   padding: 60px 0;
 }
@@ -879,11 +1004,104 @@ section {
 /*--------------------------------------------------------------
 # Team
 --------------------------------------------------------------*/
+.mydiv_background{
+ background:white;
+}
+
+.mydiv_background .box{
+  width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 15px;
+  margin: 0 auto;
+}
+.mydiv_background .card{
+  position: relative;
+  width: 300px;
+  height: 350px;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow:0 2px 10px rgba(0,0,0,.2);
+}
+.mydiv_background .card:before,
+.mydiv_background .card:after
+{
+  content:"";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: #fff;
+  transition: 0.5s;
+  z-index:-1;
+}
+.mydiv_background .card:hover:before{
+transform: rotate(20deg);
+box-shadow: 0 2px 20px rgba(0,0,0,.2);
+}
+.mydiv_background .card:hover:after{
+transform: rotate(10deg);
+box-shadow: 0 2px 20px rgba(0,0,0,.2);
+}
+.mydiv_background .card .imgBx{
+position: absolute;
+top: 10px;
+left: 10px;
+bottom: 10px;
+right: 10px;
+background: #222;
+transition: 0.5s;
+z-index: 1;
+}
+
+.mydiv_background .card:hover .imgBx
+{
+  bottom: 80px;
+}
+
+.mydiv_background .card .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mydiv_background .card .details{
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    height: 60px;
+    text-align: center;
+}
+
+.mydiv_background .card .details h2{
+ margin: 0;
+ padding: 0;
+ font-weight: 600;
+ font-size: 20px;
+ color: #777;
+ text-transform: uppercase;
+} 
+
+.mydiv_background .card .details h2 span{
+font-weight: 500;
+font-size: 12px;
+color: #4FB0FA;
+display: block;
+margin-top: 5px;
+ } 
+
 .team .member {
   text-align: center;
   margin-bottom: 20px;
-  padding: 30px 20px;
-  background: #fff;
+  padding: 30px 10px;
+  background:rgba(255, 255, 255, 0.9);
 }
 
 .team .member img {
