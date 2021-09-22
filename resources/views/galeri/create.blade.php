@@ -58,7 +58,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon3">https://www.youtube.com/watch?v=</span>
                                             </div>
-                                            <input type="text" name="link_video" id="link_video" value="{{old('link_video')}}" placeholder="Kode Video Youtube" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                            <input type="text" name="link_video" id="link_video" value="{{old('link_video')}}" placeholder="Kode Video Youtube" class="form-control" id="basic-url" aria-describedby="basic-addon3">
                                         </div>
                                     </div>
                                     <div class="col-md-12">

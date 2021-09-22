@@ -31,6 +31,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th class="text-center">Nama</th>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Jabatan</th>
@@ -38,8 +39,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $x=1; ?>
                             @foreach ($user as $user)
                                 <tr>
+                                    <td><?php echo $x++; ?>.</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->jabatan }}</td>

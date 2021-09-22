@@ -35,7 +35,7 @@
                             @foreach ($galeri as $galeri)
                                 <tr>
                                     <td class="text-center">
-                                        {{$galeri->kode}}
+                                        {{$galeri->kode}}.
                                     </td>
                                     <td>
                                         @if (!$galeri->gambar)

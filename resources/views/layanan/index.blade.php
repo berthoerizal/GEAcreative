@@ -23,24 +23,17 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th width="10%" class="text-center">Gambar</th>
+                                <th>#</th>
                                 <th class="text-center">Layanan</th>
                                 <th width="10%" class="text-center">Status</th>
                                 <th width="35%" class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $x=1; ?>
                             @foreach ($layanan as $layanan)
                                 <tr>
-                                    <td>
-                                        @if (!$layanan->gambar)
-                                            <img src="{{ asset('assets/images/imagedefault.png') }}"
-                                                class="img img-responsive img-thumbnail" width="100px">
-                                        @else
-                                            <img src="{{ asset('assets/images/' . $layanan->gambar) }}"
-                                                class="img img-responsive img-thumbnail" width="100px">
-                                        @endif
-                                    </td>
+                                    <td><?php echo $x++; ?>.</td>
                                     <td><b>{{ $layanan->nama_layanan }}</b><br><i><?php echo
                                             html_entity_decode($layanan->keterangan); ?></i></td>
                                     <td class="text-center">@if ($layanan->status_layanan=="publish")

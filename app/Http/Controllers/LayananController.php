@@ -56,54 +56,29 @@ class LayananController extends Controller
         $request->validate([
             'nama_layanan' => 'required',
             'keterangan' => 'required',
-            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $layanan = Layanan::all();
-        $slug_layanan = Str::slug($request->nama_layanan);
-        foreach ($layanan as $layanan) {
-            if ($layanan->slug == $slug_layanan) {
-                session()->flash('error', 'Nama Layanan tidak boleh sama');
+        $layanans = Layanan::all();
+        foreach ($layanans as $layanans) {
+            if ($layanans->slug == Str::slug($request->nama_layanan)) {
+                session()->flash('error', 'Nama layanan sudah digunakan');
                 return redirect(route('layanan.create'));
             }
         }
 
-        if ($request->hasFile('gambar')) {
-            $resorce  = $request->file('gambar');
-            $gambar   = Str::slug($request->nama_layanan) . '-' . $resorce->getClientOriginalName();
-            // $resorce->move(\base_path() . "/assets/images", $gambar);
-            $resorce->move(public_path() . '/assets/images', $gambar);
+        $layanan = Layanan::create([
+            'nama_layanan' => $request->nama_layanan,
+            'slug' => Str::slug($request->nama_layanan),
+            'keterangan' => $request->keterangan,
+            'status_layanan' => $request->status_layanan
+        ]);
 
-            $layanan = Layanan::create([
-                'nama_layanan' => $request->nama_layanan,
-                'slug' => Str::slug($request->nama_layanan),
-                'keterangan' => $request->keterangan,
-                'gambar' => $gambar,
-                'status_layanan' => $request->status_layanan
-            ]);
-
-            if (!$layanan) {
-                session()->flash('error', 'Data gagal ditambah');
-                return redirect(route('layanan.index'));
-            } else {
-                session()->flash('success', 'Data berhasil ditambah');
-                return redirect(route('layanan.index'));
-            }
+        if (!$layanan) {
+            session()->flash('error', 'Data gagal ditambah');
+            return redirect(route('layanan.create'));
         } else {
-            $layanan = Layanan::create([
-                'nama_layanan' => $request->nama_layanan,
-                'slug' => Str::slug($request->nama_layanan),
-                'keterangan' => $request->keterangan,
-                'status_layanan' => $request->status_layanan
-            ]);
-
-            if (!$layanan) {
-                session()->flash('error', 'Data gagal ditambah');
-                return redirect(route('layanan.index'));
-            } else {
-                session()->flash('success', 'Data berhasil ditambah');
-                return redirect(route('layanan.index'));
-            }
+            session()->flash('success', 'Data berhasil ditambah');
+            return redirect(route('layanan.index'));
         }
     }
 
@@ -146,55 +121,22 @@ class LayananController extends Controller
     {
         $request->validate([
             'nama_layanan' => 'required|unique:layanans,nama_layanan,' . $id,
-            'keterangan' => 'required',
-            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'keterangan' => 'required'
         ]);
-
-        if ($request->hasFile('gambar')) {
-            $resorce  = $request->file('gambar');
-            $gambar   = $resorce->getClientOriginalName();
-            // $resorce->move(\base_path() . "/../assets/images", $gambar);
-            $resorce->move(public_path() . '/assets/images', $gambar);
-
+        $layanan = Layanan::find($id);
+        $layanan->update([
+            'nama_layanan' => $request->nama_layanan,
+            'slug' => Str::slug($request->nama_layanan),
+            'status_layanan' => $request->status_layanan,
+            'keterangan' => $request->keterangan
+        ]);
+        if (!$layanan) {
             $layanan = Layanan::find($id);
-            if ($layanan->gambar != 'imagedefault.png') {
-                $old_image = public_path() . "/assets/images/" . $layanan->gambar;
-                @unlink($old_image);
-            }
-
-            $layanan->update([
-                'nama_layanan' => $request->nama_layanan,
-                'slug' => Str::slug($request->nama_layanan),
-                'status_layanan' => $request->status_layanan,
-                'keterangan' => $request->keterangan,
-                'gambar' => $gambar
-            ]);
-
-            if (!$layanan) {
-                $layanan = Layanan::find($id);
-                session()->flash('error', 'Data gagal diubah');
-                return redirect(route('layanan.edit', $layanan->slug));
-            } else {
-                session()->flash('success', 'Data berhasil diubah');
-                return redirect(route('layanan.index'));
-            }
+            session()->flash('error', 'Data gagal diubah');
+            return redirect(route('layanan.edit', $layanan->slug));
         } else {
-            $layanan = Layanan::find($id);
-            $layanan->update([
-                'nama_layanan' => $request->nama_layanan,
-                'slug' => Str::slug($request->nama_layanan),
-                'status_layanan' => $request->status_layanan,
-                'keterangan' => $request->keterangan
-            ]);
-
-            if (!$layanan) {
-                $layanan = Layanan::find($id);
-                session()->flash('error', 'Data gagal diubah');
-                return redirect(route('layanan.edit', $layanan->slug));
-            } else {
-                session()->flash('success', 'Data berhasil diubah');
-                return redirect(route('layanan.index'));
-            }
+            session()->flash('success', 'Data berhasil diubah');
+            return redirect(route('layanan.index'));
         }
     }
 
@@ -207,11 +149,6 @@ class LayananController extends Controller
     public function destroy($id)
     {
         $layanan = Layanan::find($id);
-        if ($layanan->gambar != 'imagedefault.png') {
-            $old_image = public_path() . "/assets/images/" . $layanan->gambar;
-            @unlink($old_image);
-        }
-
         $layanan->delete();
         if (!$layanan) {
             session()->flash('error', 'Data gagal dihapus');

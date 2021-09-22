@@ -33,6 +33,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th class="text-center">Tanggal Pesanan</th>
                                 <th class="text-center">Pemesan</th>
                                 <th class="text-center">Layanan</th>
@@ -42,8 +43,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $x=1; ?>
                             @foreach ($pesanan as $pesanan)
                                 <tr>
+                                    <td><?php echo $x++; ?>.</td>
                                     <td>{{ date('d-F-Y', strtotime($pesanan->created_at)) }}</td>
                                     <td>{{ $pesanan->pemesan }}<br><i>Nomor Hp: +62{{ $pesanan->nomor_hp }}</i></td>
                                     <td><b>{{ $pesanan->nama_layanan }}</b><br><i>{{ $pesanan->nama_paket }}</i></td>

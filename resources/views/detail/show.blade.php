@@ -26,14 +26,17 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th width="10%" class="text-center">Gambar</th>
                                 <th class="text-center">Keterangan</th>
                                 <th width="20%" class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $x=1; ?>
                             @foreach ($detail as $detail)
                                 <tr>
+                                    <td><?php echo $x++; ?>.</td>
                                     <td>
                                         @if (!$detail->gambar)
                                             <img src="{{ asset('assets/images/imagedefault.png') }}"
