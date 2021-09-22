@@ -31,7 +31,7 @@
     <link href="{{ asset('assets/landingpage/assets/css/style.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body id="home">
 
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
@@ -43,7 +43,7 @@
                     {{ substr($konfigurasi->namaweb, -8) }}</a></h1>
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="active"><a href="#home">Home</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#portfolio">Gallery</a></li>
                     <li><a href="#price">Pricing</a></li>
