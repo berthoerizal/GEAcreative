@@ -51,6 +51,7 @@
                       <li class="nav-item"><a class="nav-link active" href="#info" data-toggle="tab">Info</a></li>
                       <li class="nav-item"><a class="nav-link" href="#acara" data-toggle="tab">Acara</a></li>
                       <li class="nav-item"><a class="nav-link" href="#quotes" data-toggle="tab">Quotes</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#peta" data-toggle="tab">Peta</a></li>
                       <li class="nav-item"><a class="nav-link" href="{{ route('photo.show', $pesan->slug_pesanan) }}">Photo</a></li>
                     </ul>
                   </div><!-- /.card-header -->
@@ -194,6 +195,23 @@
                                         </td>
                                     </tr>
                                 </tbody>
+                            </table>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane" id="peta">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <td><b>Google Map</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {!!$pesan->lokasi_googlemaps!!}
+                                        </td>
+                                    </tr>
+                                </thead>
                             </table>
                         </div>
                       </div>
