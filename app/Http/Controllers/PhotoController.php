@@ -93,14 +93,10 @@ class PhotoController extends Controller
      */
     public function show($slug)
     {
-        if (Auth::user()->id_role == "admin") {
-            $pesanan = Pesanan::where('slug', $slug)->first();
-            $title = "Photo $pesanan->nama1 dan $pesanan->nama2";
-            $photo = Photo::where('id_pesanan', $pesanan->id)->paginate(4);
-            return view('photo.show', ['title' => $title, 'photo' => $photo, 'pesanan' => $pesanan]);
-        } else {
-            abort(404);
-        }
+        $pesanan = Pesanan::where('slug', $slug)->first();
+        $title = "Photo $pesanan->nama1 dan $pesanan->nama2";
+        $photo = Photo::where('id_pesanan', $pesanan->id)->paginate(4);
+        return view('photo.show', ['title' => $title, 'photo' => $photo, 'pesanan' => $pesanan]);
     }
 
     /**
