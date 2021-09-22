@@ -95,7 +95,7 @@ class PhotoController extends Controller
     {
         if (Auth::user()->id_role == "admin") {
             $pesanan = Pesanan::where('slug', $slug)->first();
-            $title = "Photo: $pesanan->nama1 dan $pesanan->nama2";
+            $title = "Photo $pesanan->nama1 dan $pesanan->nama2";
             $photo = Photo::where('id_pesanan', $pesanan->id)->paginate(4);
             return view('photo.show', ['title' => $title, 'photo' => $photo, 'pesanan' => $pesanan]);
         } else {
@@ -194,5 +194,19 @@ class PhotoController extends Controller
             session()->flash('success', 'Data berhasil dihapus');
             return redirect(route('photo.show', $data->slug));
         }
+    }
+
+    public function downloadphoto($id)
+    {
+        $photo = DB::table('photos')
+            ->leftJoin('pesanans', 'photos.id_pesanan', '=', 'pesanans.id')
+            ->select('photos.*', 'pesanans.slug')
+            ->where('photos.id', $id)
+            ->first();
+        $filePath = public_path('/assets/images/' . $photo->gambar);
+        $headers = ['Content-Type: jpg'];
+        $fileName = $photo->slug . '-' . time() . '.jpg';
+
+        return response()->download($filePath, $fileName, $headers);
     }
 }

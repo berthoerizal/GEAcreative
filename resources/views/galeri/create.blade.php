@@ -20,6 +20,7 @@
             <div class="card-body">
                 <form action="{{ route('galeri.store') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
+                    <input type="hidden" name="kode_item" id="kode_item" value="{{ $kode_item }}" class="form-control" id="basic-url" aria-describedby="basic-addon3">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -33,24 +34,13 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="jenis">Jenis Galeri</label>
-                                            <select class="form-control" id="jenis" name="jenis">
-                                                <option value="undangan_website">Undangan Website</option>
-                                                <option value="undangan_video">Undangan Video</option>
-                                                <option value="undangan_gambar">Undangan Gambar</option>
+                                            <label for="id_layanan">Layanan</label>
+                                            <select class="form-control" id="id_layanan" name="id_layanan">
+                                                @foreach ($layanans as $layanan)
+                                                    <option value="{{$layanan->id}}">{{$layanan->nama_layanan}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label for="kode_item">Kode Item</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon3">Kode Item</span>
-                                            </div>
-                                            <input type="number" name="kode_item" id="kode_item" value="{{ $kode_item }}"
-                                                class="form-control" id="basic-url" aria-describedby="basic-addon3" readonly>
-                                        </div>
-                                        <p><span style="color: red;">*</span>Kode Item harus sama dengan nama template!</p>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="link_video">Link Video</label>
@@ -69,7 +59,7 @@
                                             <div class="col-md-12">
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="gambar" name="gambar"
-                                                        onchange="previewImg()" required>
+                                                        onchange="previewImg()">
                                                     <label class="custom-file-label" for="gambar">Pilih Gambar</label>
                                                 </div>
                                             </div>
@@ -78,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <p>Preview Image:</p>
+                                <p>Preview</p>
                                 <img src="{{ asset('assets/images/imagedefault.png') }}" alt=""
                                     class="img-thumbnail img-preview">
                             </div>

@@ -33,27 +33,12 @@
                                             <td>{{$galeri->judul}}</td>
                                         </tr>
                                         <tr>
-                                            <td><b>Jenis</b></td>
-                                            <td>{{$galeri->jenis}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Kode Item</b></td>
-                                            <td>{{$galeri->kode}}</td>
+                                            <td><b>Layanan</b></td>
+                                            <td>{{$galeri->nama_layanan}}</td>
                                         </tr>
                                         <tr>
                                             <td><b>Tanggal Upload</b></td>
                                             <td>{{date("d F Y", strtotime($galeri->created_at))}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Gambar</b></td>
-                                            <td>
-                                                @if (!$galeri->gambar)
-                                                <img src="{{ asset('assets/images/imagedefault.png') }}"
-                                                class="img img-responsive img-thumbnail">
-                                                @else
-                                                <img src="{{ asset('assets/images/'.$galeri->gambar) }}" alt="" class="img-thumbnail img-preview">
-                                                @endif
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -61,12 +46,11 @@
                         </div>
                         <div class="col-md-6">
                             @if (!$galeri->link_video)
-                            <img src="{{ asset('assets/images/novideodefault.png') }}"
-                            class="img img-responsive img-thumbnail">
+                            <img src="{{ asset('assets/images/'.$galeri->gambar) }}" alt="" class="img-thumbnail img-preview">
                             @else
                             <div class="border border-primary">
                                 <div class="embed-responsive embed-responsive-1by1">
-                                    <iframe width="420" height="300" src="https://www.youtube.com/embed/{{$galeri->link_video}}" frameborder="0" allowfullscreen></iframe>
+                                    <iframe width="420" height="250" src="https://www.youtube.com/embed/{{$galeri->link_video}}" frameborder="0" allowfullscreen></iframe>
                                 </div>
                             </div>
                             @endif

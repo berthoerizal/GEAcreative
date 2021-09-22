@@ -27,3 +27,6 @@ Route::resource('harga', 'PaketController');
 Route::resource('galeri', 'GaleriController');
 Route::resource('pesanan', 'PesananController');
 Route::resource('photo', 'PhotoController');
+Route::resource('online', 'OnlineController');
+
+Route::get('/downloadphoto/{id}', ['as' => 'downloadphoto', 'uses' => 'PhotoController@downloadphoto']);

@@ -23,8 +23,9 @@ class GaleriController extends Controller
     {
         $title = "Galeri";
         $galeri = DB::table('galeris')
-            ->join('users', 'galeris.id_user', '=', 'users.id')
-            ->select('galeris.*', 'users.name')
+            ->leftJoin('users', 'galeris.id_user', '=', 'users.id')
+            ->leftJoin('layanans', 'galeris.id_layanan', '=', 'layanans.id')
+            ->select('galeris.*', 'users.name', 'layanans.nama_layanan')
             ->orderBy('kode', 'asc')
             ->get();
         return view('galeri.index', ['title' => $title, 'galeri' => $galeri]);
@@ -41,13 +42,15 @@ class GaleriController extends Controller
         $galeri_count = Galeri::all()->count();
         $galeri = Galeri::all();
         $kode_item = 0;
-        if($galeri_count>0) {
-            foreach($galeri as $galeri){
+        if ($galeri_count > 0) {
+            foreach ($galeri as $galeri) {
                 $kode_item = $galeri->kode;
             }
-        } 
+        }
         $kode_item = $kode_item + 1;
-        return view('galeri.create', ['title' => $title, 'kode_item' => $kode_item]);
+
+        $layanans = DB::table('layanans')->where('status_layanan', 'publish')->get();
+        return view('galeri.create', ['title' => $title, 'kode_item' => $kode_item, 'layanans' => $layanans]);
     }
 
     /**
@@ -79,9 +82,9 @@ class GaleriController extends Controller
 
             $galeri = Galeri::create([
                 'judul' => $request->judul,
-                'slug' => Str::slug($request->judul).'-'.time(),
+                'slug' => Str::slug($request->judul) . '-' . time(),
                 'gambar' => $gambar,
-                'jenis' => $request->jenis,
+                'id_layanan' => $request->id_layanan,
                 'id_user' => Auth::user()->id,
                 'kode' => $request->kode_item,
                 'link_video' => $request->link_video
@@ -97,8 +100,8 @@ class GaleriController extends Controller
         } else {
             $galeri = Galeri::create([
                 'judul' => $request->judul,
-                'slug' => Str::slug($request->judul).'-'.time(),
-                'jenis' => $request->jenis,
+                'slug' => Str::slug($request->judul) . '-' . time(),
+                'id_layanan' => $request->id_layanan,
                 'id_user' => Auth::user()->id,
                 'kode' => $request->kode_item,
                 'link_video' => $request->link_video
@@ -124,10 +127,11 @@ class GaleriController extends Controller
     {
         $title = "Detail Galeri";
         $galeri = DB::table('galeris')
-        ->join('users', 'galeris.id_user', '=', 'users.id')
-        ->select('galeris.*', 'users.name')
-        ->where('slug', $slug)
-        ->first();
+            ->leftJoin('users', 'galeris.id_user', '=', 'users.id')
+            ->leftJoin('layanans', 'galeris.id_layanan', '=', 'layanans.id')
+            ->select('galeris.*', 'users.name', 'layanans.nama_layanan')
+            ->where('galeris.slug', $slug)
+            ->first();
         return view('galeri.show', [
             'title' => $title,
             'galeri' => $galeri
@@ -144,9 +148,10 @@ class GaleriController extends Controller
     {
         $title = "Edit Galeri";
         $galeri = Galeri::where('slug', $slug)->first();
-        
+        $layanans = DB::table('layanans')->where('status_layanan', 'publish')->get();
+
         if (Auth::user()->id == $galeri->id_user) {
-            return view('galeri.edit', ['title' => $title, 'galeri' => $galeri]);
+            return view('galeri.edit', ['title' => $title, 'galeri' => $galeri, 'layanans' => $layanans]);
         } else {
             abort(404);
         }
@@ -180,9 +185,9 @@ class GaleriController extends Controller
 
             $galeri->update([
                 'judul' => $request->judul,
-                'slug' => Str::slug($request->judul).'-'.time(),
+                'slug' => Str::slug($request->judul) . '-' . time(),
                 'gambar' => $gambar,
-                'jenis' => $request->jenis,
+                'id_layanan' => $request->id_layanan,
                 'id_user' => Auth::user()->id,
                 'kode' => $request->kode,
                 'link_video' => $request->link_video
@@ -200,8 +205,8 @@ class GaleriController extends Controller
             $galeri = Galeri::find($id);
             $galeri->update([
                 'judul' => $request->judul,
-                'slug' => Str::slug($request->judul).'-'.time(),
-                'jenis' => $request->jenis,
+                'slug' => Str::slug($request->judul) . '-' . time(),
+                'id_layanan' => $request->id_layanan,
                 'id_user' => Auth::user()->id,
                 'kode' => $request->kode,
                 'link_video' => $request->link_video
@@ -235,10 +240,10 @@ class GaleriController extends Controller
 
         $galeri_all = Galeri::all();
         $galeri_count = Galeri::all()->count();
-        $x=1;
-        if($galeri_count>0){
-            foreach($galeri_all as $galeri_all){
-                Galeri::where('id', $galeri_all->id)->update(['kode'=>$x]);
+        $x = 1;
+        if ($galeri_count > 0) {
+            foreach ($galeri_all as $galeri_all) {
+                Galeri::where('id', $galeri_all->id)->update(['kode' => $x]);
                 $x++;
             }
         }

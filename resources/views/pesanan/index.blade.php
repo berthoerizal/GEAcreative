@@ -60,7 +60,7 @@
                                     </td>
                                     <td>
                                         
-                                        <a class="btn btn-primary btn-sm" href=""><i class="fa fa-file-archive"></i>
+                                        <a class="btn btn-primary btn-sm" href="{{ route('pesanan.show', $pesanan->slug) }}"><i class="fa fa-file-archive"></i>
                                             Detail</a>
 
                                         @if (Auth::user()->id_role == 'admin')

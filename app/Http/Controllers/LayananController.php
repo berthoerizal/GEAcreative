@@ -149,6 +149,8 @@ class LayananController extends Controller
     public function destroy($id)
     {
         $layanan = Layanan::find($id);
+        DB::table('pakets')->where('id_layanan', $id)->delete();
+        DB::table('details')->where('id_layanan', $id)->delete();
         $layanan->delete();
         if (!$layanan) {
             session()->flash('error', 'Data gagal dihapus');

@@ -279,7 +279,7 @@
                                 <!--//FEATURE LIST END-->
                                 <!--BUTTON START-->
                                 <div class="generic_price_btn clearfix">
-                                    <a class="btn-pilih" href="">Pesan</a>
+                                    <a class="btn-pilih" href="https://wa.me/62{{ $konfigurasi->nomor_hp }}?text=Saya ingin pesan paket {{$paket->nama_paket}}.">Pesan</a>
                                 </div>
                                 <!--//BUTTON END-->
                             </div>

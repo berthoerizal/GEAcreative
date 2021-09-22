@@ -24,9 +24,8 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th width="10%" class="text-center">Gambar</th>
                                 <th class="text-center">Judul</th>
-                                <th class="text-center">Jenis</th>
+                                <th class="text-center">Layanan</th>
                                 <th class="text-center">Tanggal Upload</th>
                                 <th width="25%" class="text-center">Aksi</th>
                             </tr>
@@ -37,16 +36,8 @@
                                     <td class="text-center">
                                         {{$galeri->kode}}.
                                     </td>
-                                    <td>
-                                        @if (!$galeri->gambar)
-                                            <img src="{{ asset('assets/images/imagedefault.png') }}"
-                                                class="img img-responsive img-thumbnail" width="100px">
-                                        @else
-                                            @include('galeri.modal_image')
-                                        @endif
-                                    </td>
                                     <td><b>{{ $galeri->judul }}</b><br><i>Oleh: {{ $galeri->name }}</i></td>
-                                    <td class="text-center"><b>{{$galeri->jenis}}</b></td>
+                                    <td class="text-center"><b>{{$galeri->nama_layanan}}</b></td>
                                     <td class="text-center"><?php echo date('d M Y',
                                         strtotime($galeri->created_at)); ?></td>
                                     <td>

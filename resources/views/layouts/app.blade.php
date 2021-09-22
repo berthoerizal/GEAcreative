@@ -10,6 +10,9 @@
     <meta name="author" content="{{ $konfigurasi->author }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $konfigurasi->namaweb }}</title>
+    <!-- Favicons -->
+    <link href="{{ asset('assets/landingpage/assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('assets/landingpage/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Custom fonts for this template -->
     <link href="{{ asset('assets/admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">

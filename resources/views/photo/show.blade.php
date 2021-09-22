@@ -13,7 +13,7 @@
     <div class="row mb-4">
         <div class="col-md-12">
             <div class="float-left">
-                <a href="{{ route('pesanan.index') }}" class="btn btn-primary btn-sm"><i
+                <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm"><i
                         class="fa fa-arrow-circle-left"></i> Kembali</a>
             </div>
             <div class="float-right">
@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         @foreach($photo as $data)
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card shadow mb-4">
                 <div class="card-header">
                     <img class="card-img-top" src="{{asset('assets/images/'.$data->gambar)}}" width="100%" height="100%">
@@ -33,8 +33,11 @@
                     <p style="font-size: 12px;">{{date('d F Y', strtotime($data->created_at))}}</p>
                 </div>
                 <div class="card-footer text-muted">
-                    @include('photo.edit')
-                    @include('photo.delete')
+                    @if (Auth::user()->id_role == 'admin')
+                        @include('photo.edit')
+                        @include('photo.delete')
+                    @endif
+                    <a href="{{route('downloadphoto', $data->id)}}" class="btn btn-dark btn-sm"><i class="fa fa-download"></i> Download</a>
                 </div>
               </div>
         </div>

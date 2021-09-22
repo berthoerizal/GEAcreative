@@ -94,14 +94,14 @@ class DetailController extends Controller
     public function show($slug)
     {
         if (Auth::user()->id_role == "admin") {
-        $layanan = Layanan::where('slug', $slug)->first();
-        $title = "Detail: $layanan->nama_layanan";
-        $detail = DB::table('details')
-            ->join('layanans', 'details.id_layanan', '=', 'layanans.id')
-            ->select('details.*', 'layanans.nama_layanan', 'layanans.slug')
-            ->where('id_layanan', $layanan->id)
-            ->get();
-        return view('detail.show', ['title' => $title, 'detail' => $detail, 'layanan' => $layanan]);
+            $layanan = Layanan::where('slug', $slug)->first();
+            $title = "Detail $layanan->nama_layanan";
+            $detail = DB::table('details')
+                ->join('layanans', 'details.id_layanan', '=', 'layanans.id')
+                ->select('details.*', 'layanans.nama_layanan', 'layanans.slug')
+                ->where('id_layanan', $layanan->id)
+                ->get();
+            return view('detail.show', ['title' => $title, 'detail' => $detail, 'layanan' => $layanan]);
         } else {
             abort(404);
         }

@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <select class="form-control select2" id="id_paket" name="id_paket">
                                     @foreach ($paket as $paket)
-                                        <option value="{{$paket->id}}">{{$paket->nama_layanan}} | {{$paket->nama_paket}} | {{$paket->total_bayar}}</option>
+                                        <option value="{{$paket->id}}">{{$paket->nama_layanan}} | {{$paket->nama_paket}} | <?php echo round($paket->total_bayar); ?></option>
                                     @endforeach
                                 </select>
                             </div>
@@ -179,21 +179,21 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="keterangan">Keterangan</label>
+                            <label for="keterangan">Quotes 1</label>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-sm" name="keterangan"
                                     id="keterangan" value="{{ old('keterangan') }}">
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="quotes">Quotes</label>
+                            <label for="quotes">Quotes 2</label>
                             <div class="form-group">
                                 <textarea name="quotes" id="quotes" cols="30" rows="10" class="form-control textarea-tinymce">{{old('quotes')}}</textarea>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="id_galeri">Template</label>
+                                <label for="id_galeri">Galeri</label>
                                 <select class="form-control form-control-sm" id="id_galeri" name="id_galeri">
                                     @foreach ($galeri as $galeri)
                                         <option value="{{$galeri->id}}">{{$galeri->judul}}</option>

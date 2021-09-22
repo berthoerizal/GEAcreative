@@ -27,8 +27,8 @@ class PesananController extends Controller
         $title = "Pesanan";
         // $pesanan = Pesanan::all();
         $pesanan = DB::table('pesanans')
-            ->join('layanans', 'pesanans.id_layanan', '=', 'layanans.id')
-            ->join('pakets', 'pesanans.id_paket', '=', 'pakets.id')
+            ->leftJoin('layanans', 'pesanans.id_layanan', '=', 'layanans.id')
+            ->leftJoin('pakets', 'pesanans.id_paket', '=', 'pakets.id')
             ->select('pesanans.*', 'layanans.nama_layanan', 'pakets.nama_paket')
             ->orderBy('created_at', 'asc')
             ->get();
@@ -44,11 +44,7 @@ class PesananController extends Controller
     {
         if (Auth::user()->id_role == "admin") {
             $title = "Tambah Pesanan";
-            $galeri = DB::table('galeris')
-            ->where('jenis', 'undangan_website')
-            ->orWhere('jenis', 'undangan_gambar')
-            ->orWhere('jenis', 'undangan_video')
-            ->get();
+            $galeri = Galeri::all();
             $paket = DB::table('pakets')
                 ->join('layanans', 'pakets.id_layanan', '=', 'layanans.id')
                 ->select(DB::raw('pakets.harga-(pakets.harga*pakets.diskon/100) as total_bayar'), 'pakets.id', 'pakets.nama_paket', 'layanans.nama_layanan', 'layanans.status_layanan')
@@ -121,9 +117,17 @@ class PesananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $pesanan = DB::table('pesanans')
+            ->leftJoin('galeris', 'pesanans.id_galeri', '=', 'galeris.id')
+            ->leftJoin('layanans', 'pesanans.id_layanan', '=', 'layanans.id')
+            ->leftJoin('pakets', 'pesanans.id_paket', '=', 'pakets.id')
+            ->select('pesanans.*', 'galeris.*', 'layanans.*', 'pakets.*', 'pesanans.keterangan as quotes1', 'layanans.slug as slug_layanan', 'pesanans.slug as slug_pesanan')
+            ->where('pesanans.slug', $slug)
+            ->first();
+
+        return view('pesanan.detail', ['title' => 'Detail Pesanan', 'pesan' => $pesanan]);
     }
 
     /**
@@ -137,11 +141,7 @@ class PesananController extends Controller
         if (Auth::user()->id_role == "admin") {
             $title = "Edit Pesanan";
             $pesanan = DB::table('pesanans')->where('slug', $slug)->first();
-            $galeri = DB::table('galeris')
-            ->where('jenis', 'undangan_website')
-            ->orWhere('jenis', 'undangan_gambar')
-            ->orWhere('jenis', 'undangan_video')
-            ->get();
+            $galeri = Galeri::all();
             $paket = DB::table('pakets')
                 ->join('layanans', 'pakets.id_layanan', '=', 'layanans.id')
                 ->select(DB::raw('pakets.harga-(pakets.harga*pakets.diskon/100) as total_bayar'), 'pakets.id', 'pakets.nama_paket', 'layanans.nama_layanan', 'layanans.status_layanan')

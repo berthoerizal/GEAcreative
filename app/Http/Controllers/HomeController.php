@@ -16,9 +16,15 @@ class HomeController extends Controller
             ->where('status_layanan', 'publish')
             ->orderBy('id_layanan', 'asc')
             ->get();
-        $galeri_website = DB::table('galeris')->where('jenis', 'undangan_website')->get();
-        $galeri_gambar = DB::table('galeris')->where('jenis', 'undangan_gambar')->get();
-        $galeri_video = DB::table('galeris')->where('jenis', 'undangan_video')->get();
+        $galeri_website = DB::table('galeris')
+            ->leftJoin('layanans', 'galeris.id_layanan', '=', 'layanans.id')
+            ->where('layanans.slug', 'undangan-website')->get();
+        $galeri_gambar = DB::table('galeris')
+            ->leftJoin('layanans', 'galeris.id_layanan', '=', 'layanans.id')
+            ->where('layanans.slug', 'undangan-gambar')->get();
+        $galeri_video = DB::table('galeris')
+            ->leftJoin('layanans', 'galeris.id_layanan', '=', 'layanans.id')
+            ->where('layanans.slug', 'undangan-video')->get();
         $users = DB::table('users')->select('name', 'gambar', 'jabatan')->get();
         $paket = DB::table('pakets')
             ->join('layanans', 'pakets.id_layanan', '=', 'layanans.id')

@@ -21,6 +21,8 @@
                 <form action="{{ route('galeri.update', $galeri->id) }}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
                     {{ csrf_field() }}
+                    <input type="hidden" name="kode" id="kode" value="{{ $galeri->kode }}"
+                    class="form-control" id="basic-url" aria-describedby="basic-addon3">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -34,33 +36,16 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="jenis">Jenis</label>
-                                            <select class="form-control" id="jenis" name="jenis">
-                                                <option value="undangan_website"
-                                                @if ($galeri->jenis == 'undangan_website')
-                                                selected
-                                                @endif>Undangan Website</option>
-                                                <option value="undangan_video"
-                                                @if ($galeri->jenis == 'undangan_video')
-                                                selected
-                                                @endif>Undangan Video</option>
-                                                <option value="undangan_gambar"
-                                                @if ($galeri->jenis == 'undangan_gambar')
-                                                selected
-                                                @endif>Undangan Gambar</option>
+                                            <label for="id_layanan">Layanan</label>
+                                            <select class="form-control" id="id_layanan" name="id_layanan">
+                                                @foreach ($layanans as $layanan)
+                                                    <option value="{{$layanan->id}}" 
+                                                        @if ($layanan->id == $galeri->id_layanan)
+                                                        selected
+                                                        @endif>{{$layanan->nama_layanan}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label for="kode">Kode Item</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon3">Kode Item</span>
-                                            </div>
-                                            <input type="number" name="kode" id="kode" value="{{ $galeri->kode }}"
-                                                class="form-control" id="basic-url" aria-describedby="basic-addon3" readonly>
-                                        </div>
-                                        <p><span style="color: red;">*</span>Kode Item harus sama dengan nama template!</p>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="link_video">Link Video</label>
@@ -88,13 +73,16 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <p>Preview Image:</p>
-                                @if (!$galeri->gambar)
-                                    <img src="{{ asset('assets/images/imagedefault.png') }}" alt=""
-                                        class="img-thumbnail img-preview">
+                                <p>Preview</p>
+                                @if (!$galeri->link_video)
+                                <img src="{{ asset('assets/images/' . $galeri->gambar) }}" alt=""
+                                class="img-thumbnail img-preview">
                                 @else
-                                    <img src="{{ asset('assets/images/' . $galeri->gambar) }}" alt=""
-                                        class="img-thumbnail img-preview">
+                                <div class="border border-primary">
+                                    <div class="embed-responsive embed-responsive-1by1">
+                                        <iframe width="420" height="250" src="https://www.youtube.com/embed/{{$galeri->link_video}}" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                </div>
                                 @endif
                             </div>
                         </div>
